@@ -1,0 +1,187 @@
+.specialization {
+  position: relative;
+  background-color: $background-color-regular;
+  text-align: center;
+  padding-top: 900px;
+  padding-bottom: 900px;
+  clip-path: polygon(
+    -4.479% 7.69%,
+    -4.479% 7.69%,
+    -3.518% 7.763%,
+    -0.827% 7.962%,
+    3.312% 8.254%,
+    8.611% 8.609%,
+    14.787% 8.995%,
+    21.553% 9.381%,
+    28.626% 9.736%,
+    35.72% 10.029%,
+    42.55% 10.227%,
+    48.83% 10.3%,
+    48.83% 10.3%,
+    55.138% 10.012%,
+    62.043% 9.229%,
+    69.247% 8.075%,
+    76.454% 6.674%,
+    83.366% 5.15%,
+    89.688% 3.626%,
+    95.121% 2.225%,
+    99.37% 1.071%,
+    102.137% 0.288%,
+    103.125% 0%,
+    103.125% 100%,
+    103.125% 100%,
+    102.829% 100%,
+    101.93% 100%,
+    100.405% 100%,
+    98.237% 100%,
+    95.404% 100%,
+    91.886% 100%,
+    87.664% 100%,
+    82.718% 100%,
+    77.028% 100%,
+    70.573% 100%,
+    70.573% 100%,
+    62.928% 100%,
+    54.008% 100%,
+    44.301% 100%,
+    34.3% 100%,
+    24.492% 100%,
+    15.369% 100%,
+    7.421% 100%,
+    1.136% 100%,
+    -2.994% 100%,
+    -4.479% 100%,
+    -4.479% 7.69%
+  );
+  
+  &__subtitle {
+    margin-top: 40px;
+    color: $color-text-opacity;
+  }
+
+  &__card-list {
+    margin-top: 30px;
+    .card-dark {
+      background-color: $background-color-dark;
+      color: white;
+    }
+    .card-grey {
+      background-color: $background-color-light;
+      a {
+        color: $color-text;
+      }
+    }
+    .card-light {
+      a {
+        color: $color-text;
+      }
+      background-color: white;
+    }
+  }
+
+  &__card {
+    position: relative;
+    width: 100%;
+    display: flex;
+    text-align: left;
+    align-items: flex-start;
+    justify-content: space-between;
+    z-index: 10;
+    margin-top: -100px;
+    &-link {
+      margin-bottom: 30px;
+    }
+    &-link a {
+      text-decoration: underline;
+      color: white;
+    }
+    &-desc {
+      margin-top: 10px;
+    }
+    &-image {
+      position: relative;
+      flex: 0 0 30%;
+      img {
+        width: 100%;
+      }
+    }
+    transition: all 0.5s ease 0s;
+  }
+  &__card:hover {
+    transform: scale(1.1);
+  }
+  &__card:hover + &__card {
+    transform: translateY(125px);
+  }
+  &__card:first-child {
+    margin-top: 0;
+  }
+  &__image-desc {
+    position: absolute;
+    top: 0;
+    right: 0;
+    p {
+      max-width: 200px;
+      text-align: center;
+      padding: 14px 21px;
+      border-radius: 20px;
+      transform: rotate(5deg);
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .specialization {
+    &__card {
+      align-items: center;
+      margin-top: -20px;
+      &-image {
+        position: relative;
+        flex: 0 0 30%;
+        img {
+          width: 100%;
+        }
+      }
+    }
+    &__image-desc {
+      position: absolute;
+      top: -10px;
+      right: -20px;
+      p {
+        font-size: 12px;
+        max-width: 150px;
+        text-align: center;
+        padding: 7px 14px;
+        border-radius: 20px;
+        transform: rotate(5deg);
+      }
+    }
+  }
+}
+@media screen and (max-width: 400px) {
+  .specialization {
+    &__card {
+      &-title {
+        font-size: 16px !important;
+      }
+      &-desc {
+        display: none;
+      }
+      &-image {
+        position: static;
+        flex: 0 0 0%;
+        img {
+          display: none;
+        }
+      }
+    }
+    &__card:hover + &__card {
+      transform: translateY(25px);
+    }
+    &__image-desc {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
+}

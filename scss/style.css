@@ -1,0 +1,149 @@
+@charset "UTF-8";
+/*          Шрифты           */
+/*****************************/
+/*        Background         */
+/*****************************/
+/*          Vacancy          */
+/*****************************/
+/* Общие стили */
+body {
+  position: relative;
+  font-family: "Myriad Pro", sans-serif;
+  font-weight: 400;
+  color: #0057a6;
+  background-color: #f6fbff;
+  overflow-x: hidden;
+}
+
+.container {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.text {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.triangle {
+  background-color: #0057a6;
+  text-align: left;
+}
+
+.triangle:before,
+.triangle:after {
+  content: "";
+  position: absolute;
+  background-color: inherit;
+}
+
+.triangle,
+.triangle:before,
+.triangle:after {
+  width: 30px;
+  height: 30px;
+  border-top-right-radius: 30%;
+}
+
+.triangle {
+  transform: rotate(-60deg) skewX(-30deg) scale(1, 0.866);
+}
+
+.triangle:before {
+  transform: rotate(-135deg) skewX(-45deg) scale(1.414, 0.707) translate(0, -50%);
+}
+
+.triangle:after {
+  transform: rotate(135deg) skewY(-45deg) scale(0.707, 1.414) translate(50%);
+}
+
+@media screen and (max-width: 1200px) {
+  .container {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+@media screen and (max-width: 900px) {
+  .container {
+    width: 100%;
+    padding: 0px 32px;
+  }
+  .text {
+    font-size: 16px;
+  }
+}
+@media screen and (max-width: 700px) {
+  .container {
+    width: 100%;
+    padding: 0px 32px;
+  }
+  .text {
+    font-size: 14px;
+  }
+}
+/***************/
+/*  Заголовки  */
+h1.title {
+  font-size: 60px;
+  font-weight: 700;
+  color: #0057a6;
+}
+
+h2.title {
+  font-size: 36px;
+  font-weight: 700;
+  color: #0057a6;
+}
+
+h3.title {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+h4.title {
+  font-size: 22px;
+}
+
+h5.title {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+@media screen and (max-width: 900px) {
+  h3.title {
+    font-size: 20px;
+  }
+  h4.title {
+    font-size: 18px;
+  }
+}
+@media screen and (max-width: 700px) {
+  h2.title {
+    font-size: 24px;
+  }
+  h3.title {
+    font-size: 18px;
+  }
+}
+@media screen and (max-width: 400px) {
+  h2.title {
+    font-size: 20px;
+  }
+  h4.title {
+    font-size: 16px;
+  }
+}
+/***************/
+/* Блоки */
+.border-radius {
+  border-radius: 20px;
+  width: 100%;
+  padding: 30px 40px;
+}
+
+@media screen and (max-width: 700px) {
+  .border-radius {
+    padding: 14px 21px;
+  }
+}
+/***************//*# sourceMappingURL=style.css.map */

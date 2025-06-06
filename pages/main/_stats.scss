@@ -1,0 +1,121 @@
+.stats {
+  padding-bottom: 120px;
+  position: relative;
+  &__container-shadow {
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  }
+  &__container {
+    height: 322px;
+    background-color: $background-color-regular;
+    border-radius: 40px;
+    clip-path: polygon(
+      0.468% 15.905%,
+      0.468% 15.905%,
+      0.354% 13.528%,
+      0.355% 11.198%,
+      0.465% 8.963%,
+      0.673% 6.872%,
+      0.971% 4.971%,
+      1.349% 3.309%,
+      1.799% 1.933%,
+      2.311% 0.891%,
+      2.877% 0.231%,
+      3.487% 0%,
+      96.528% 0%,
+      96.528% 0%,
+      97.173% 0.257%,
+      97.766% 0.99%,
+      98.296% 2.141%,
+      98.755% 3.652%,
+      99.133% 5.465%,
+      99.418% 7.524%,
+      99.602% 9.769%,
+      99.674% 12.144%,
+      99.626% 14.591%,
+      99.446% 17.052%,
+      91.805% 92.207%,
+      91.805% 92.207%,
+      91.642% 93.569%,
+      91.441% 94.825%,
+      91.206% 95.967%,
+      90.941% 96.984%,
+      90.648% 97.869%,
+      90.331% 98.613%,
+      89.993% 99.207%,
+      89.637% 99.641%,
+      89.268% 99.909%,
+      88.887% 100%,
+      9.044% 100%,
+      9.044% 100%,
+      8.63% 99.893%,
+      8.231% 99.579%,
+      7.85% 99.07%,
+      7.491% 98.379%,
+      7.158% 97.517%,
+      6.855% 96.496%,
+      6.586% 95.328%,
+      6.356% 94.025%,
+      6.167% 92.598%,
+      6.025% 91.061%,
+      0.468% 15.905%
+    );
+  }
+  &__grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 80px;
+    gap: 70px;
+  }
+  &__item {
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    align-self: center;
+    justify-self: flex-start;
+    gap: 7px;
+    &-icon {
+      background: url(../../assest/icons/marker.svg);
+      background-size: contain;
+      width: 16px;
+      height: 16px;
+    }
+    p {
+      font-size: 22px;
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .stats {
+    &__container,
+    .geography__container {
+      width: (calc(100vw - 64px));
+    }
+
+    &__grid {
+      flex-direction: column;
+      justify-self: center;
+      align-items: flex-start;
+      padding-top: 40px;
+      gap: 0px;
+    }
+
+    &__item {
+      p {
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .stats {
+    &__item {
+      p {
+        font-size: 16px;
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+@mixin font-face($name, $path, $weight: normal, $style: normal) {
+  @font-face {
+    font-family: $name;
+    src: url("#{$path}.otf") format("otf");
+    font-weight: $weight;
+    font-style: $style;
+    font-display: swap;
+  }
+}
+
+@include font-face("Myriad Pro", "../assest/fonts/myriadpro-regular", 400);
+@include font-face("Myriad Pro", "../assest/fonts/myriadpro-bold", 700);

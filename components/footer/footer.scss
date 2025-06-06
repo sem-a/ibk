@@ -1,0 +1,109 @@
+@import "../../scss/_var.scss";
+
+.footer {
+  width: 100%;
+  background-color: $background-color-dark;
+  &__container {
+    padding: 40px 120px;
+  }
+  &__company-name {
+    color: white;
+  }
+  &__section-title,
+  &__text,
+  &__menu-link,
+  &__text a {
+    font-size: 18px;
+    color: $color-footer-text;
+  }
+  &__text a:hover {
+    text-decoration: underline;
+  }
+  &__flex,
+  &__menus,
+  &__copyright {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+  &__flex {
+    margin-top: 20px;
+    padding-inline: 10px;
+  }
+  a.footer__text {
+    text-decoration: underline;
+  }
+  &__menus {
+    gap: 60px;
+    margin-right: 20px;
+  }
+  &__menu-item {
+    margin-top: 10px;
+  }
+  &__menu-link {
+    opacity: 0.8;
+    transition: all 0.35s ease;
+  }
+  &__menu-link:hover {
+    opacity: 1;
+  }
+  &__contacts {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 16px;
+  }
+  &__line {
+    margin-top: 26px;
+    margin-bottom: 16px;
+    width: 100%;
+    height: 1px;
+    background-color: white;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .footer {
+    &__container {
+      padding: 40px 32px;
+    }
+    &__menus {
+      display: none;
+    }
+    &__contacts {
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 120px;
+    }
+  }
+}
+
+@media screen and (max-width: 830px) {
+  .footer {
+    &__contacts {
+      gap: 40px;
+    }
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .footer {
+    &__container {
+      padding: 40px 16px;
+    }
+    &__contacts {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 16px;
+    }
+    &__section-title,
+    &__text,
+    &__menu-link,
+    &__text a {
+      font-size: 15px;
+    }
+  }
+}

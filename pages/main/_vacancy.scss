@@ -1,0 +1,130 @@
+.vacancy {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  .border-radius {
+    padding: 16px 16px 42px 16px;
+  }
+  &__container {
+    padding: 85px 0px 132px 0px;
+    margin: 0 auto;
+    &::after {
+      content: "";
+      width: 1520px;
+      height: 100%;
+      border-radius: 40px;
+      background-color: $background-color-regular;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      z-index: -1;
+      transform: translateX(-50%) skew(3deg, 1deg);
+      box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    }
+  }
+  &__list {
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+  }
+  &__item {
+    position: relative;
+    flex: 1;
+    background-color: $background-color-vacancy-item;
+    transition: all 0.35s ease 0s;
+    &-flex {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      height: 100px;
+    }
+    &-image {
+      height: 100%;
+    }
+    &-subtitle {
+      color: $color-vacancy-item;
+    }
+  }
+  &__item:hover {
+    transition: all 0.35s ease 0s;
+    transform: scale(1.1);
+  }
+  &__details {
+    cursor: pointer;
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    p {
+      font-size: 16px;
+    }
+    &-arrow {
+      margin-top: 2px;
+      width: 16px;
+      height: 16px;
+      background: url(../../assest/icons/arrow-right.svg);
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+  }
+  &__details:hover {
+    text-decoration: underline;
+  }
+  &__task {
+    &-title {
+      font-size: 16px;
+      color: $color-vacancy-item;
+    }
+    &-list {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    &-marker {
+      min-width: 12px;
+      min-height: 12px;
+      margin-top: 3px;
+      background: url(../../assest/icons/marker-light.svg);
+      background-size: contain;
+      background-repeat: none;
+    }
+    &-item {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      width: 100%;
+      gap: 10px;
+      p {
+        color: $color-vacancy-item;
+      }
+    }
+  }
+}
+@media screen and (max-width: 1520px) {
+  .vacancy {
+    &__container::after {
+      width: 90%;
+    }
+  }
+}
+@media screen and (max-width: 1200px) {
+  .vacancy {
+    &__item:nth-child(3) {
+      display: none;
+    }
+  }
+}
+@media screen and (max-width: 700px) {
+  .vacancy {
+    &__item:nth-child(2) {
+      display: none;
+    }
+  }
+}

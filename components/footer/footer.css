@@ -1,0 +1,98 @@
+@charset "UTF-8";
+/*          Шрифты           */
+/*****************************/
+/*        Background         */
+/*****************************/
+/*          Vacancy          */
+/*****************************/
+.footer {
+  width: 100%;
+  background-color: #0057a6;
+}
+.footer__container {
+  padding: 40px 120px;
+}
+.footer__company-name {
+  color: white;
+}
+.footer__section-title, .footer__text, .footer__menu-link, .footer__text a {
+  font-size: 18px;
+  color: white;
+}
+.footer__text a:hover {
+  text-decoration: underline;
+}
+.footer__flex, .footer__menus, .footer__copyright {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.footer__flex {
+  margin-top: 20px;
+  padding-inline: 10px;
+}
+.footer a.footer__text {
+  text-decoration: underline;
+}
+.footer__menus {
+  gap: 60px;
+  margin-right: 20px;
+}
+.footer__menu-item {
+  margin-top: 10px;
+}
+.footer__menu-link {
+  opacity: 0.8;
+  transition: all 0.35s ease;
+}
+.footer__menu-link:hover {
+  opacity: 1;
+}
+.footer__contacts {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 16px;
+}
+.footer__line {
+  margin-top: 26px;
+  margin-bottom: 16px;
+  width: 100%;
+  height: 1px;
+  background-color: white;
+}
+
+@media screen and (max-width: 1000px) {
+  .footer__container {
+    padding: 40px 32px;
+  }
+  .footer__menus {
+    display: none;
+  }
+  .footer__contacts {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 120px;
+  }
+}
+@media screen and (max-width: 830px) {
+  .footer__contacts {
+    gap: 40px;
+  }
+}
+@media screen and (max-width: 750px) {
+  .footer__container {
+    padding: 40px 16px;
+  }
+  .footer__contacts {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 16px;
+  }
+  .footer__section-title, .footer__text, .footer__menu-link, .footer__text a {
+    font-size: 15px;
+  }
+}/*# sourceMappingURL=footer.css.map */

@@ -1,0 +1,35 @@
+.contact {
+  position: relative;
+  padding: 600px 0px 40px 0px;
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 160px;
+  }
+  &__title {
+    margin-bottom: 20px;
+  }
+  &__item {
+    &-title {
+      display: inline-block;
+      background-color: $background-color-dark;
+      color: white;
+      padding: 4px 10px;
+      border-radius: 8px;
+      margin-top: 22px;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .contact {
+    &__container {
+      display: block;
+    }
+    &__flex-item:last-child {
+      display: none;
+    }
+  }
+}
