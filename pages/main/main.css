@@ -249,16 +249,59 @@
   }
 }
 @media screen and (max-width: 1520px) {
-  .map {
+  .map .container {
     width: 1000px;
   }
   .map__slider::after {
     transform: skew(5deg, 2deg);
   }
 }
+@media screen and (max-width: 1520px) and (max-width: 1200px) {
+  .map .container {
+    width: 816px;
+  }
+}
 @media screen and (max-width: 1520px) and (max-width: 900px) {
   .map {
-    width: 90%;
+    bottom: 52px;
+  }
+  .map .container {
+    width: 616px;
+  }
+}
+@media screen and (max-width: 1520px) and (max-width: 700px) {
+  .map {
+    bottom: -10px;
+  }
+  .map .container {
+    width: 516px;
+  }
+  .map__slider {
+    padding: 42px;
+  }
+  .map__slider::after {
+    transform: skew(0deg, 0deg);
+  }
+  .map__slider-container {
+    margin-top: 21px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  .map__slider-title .map__slider-triangle {
+    top: 0;
+    left: 400px;
+  }
+}
+@media screen and (max-width: 700px) {
+  .map {
+    bottom: -10px;
+  }
+  .map .container {
+    width: 383px;
+  }
+  .map__slider-title .map__slider-triangle {
+    display: none;
   }
 }
 .specialization {
@@ -343,10 +386,28 @@
   transform: rotate(5deg);
 }
 
+@media screen and (max-width: 900px) {
+  .specialization {
+    padding-top: 300px;
+    padding-bottom: 600px;
+  }
+}
 @media screen and (max-width: 700px) {
+  .specialization {
+    padding-top: 600px;
+  }
+  .specialization .border-radius {
+    padding-block: 36px;
+  }
+  .specialization__card:hover {
+    transform: scale(1);
+  }
+  .specialization__card:hover + .specialization__card {
+    transform: translateY(0);
+  }
   .specialization__card {
     align-items: center;
-    margin-top: -20px;
+    margin-top: -21px;
   }
   .specialization__card-image {
     position: relative;
@@ -490,13 +551,24 @@
   text-decoration: underline;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1400px) {
   .client {
     width: 100%;
+  }
+  .client .container {
+    width: 1000px;
   }
   .client__slide-container img {
     width: 30%;
     height: auto;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .client {
+    width: 100%;
+  }
+  .client .container {
+    width: 90%;
   }
 }
 @media screen and (max-width: 900px) {
@@ -508,11 +580,17 @@
   }
 }
 @media screen and (max-width: 800px) {
+  .client {
+    width: 95%;
+  }
   .client__triangle {
     display: none;
   }
   .client__container {
     padding: 30px;
+  }
+  .client__container::after {
+    transform: skew(0deg, 0deg);
   }
   .client__slide {
     height: 250px;

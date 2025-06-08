@@ -96,7 +96,9 @@
 
 @media screen and (max-width: 1520px) {
   .map {
-    width: 1000px;
+    .container {
+      width: 1000px;
+    }
     &__slider {
       &::after {
         transform: skew(5deg, 2deg);
@@ -105,10 +107,56 @@
   }
 
   @media screen and (max-width: 1200px) {
+    .map {
+      .container {
+        width: 816px;
+      }
+    }
   }
   @media screen and (max-width: 900px) {
     .map {
-      width: 90%;
+      bottom: 52px;
+      .container {
+        width: 616px;
+      }
+    }
+  }
+  @media screen and (max-width: 700px) {
+    .map {
+      bottom: -10px;
+      .container {
+        width: 516px;
+      }
+      &__slider {
+        padding: 42px;
+        &::after {
+          transform: skew(0deg, 0deg);
+        }
+        &-container {
+          margin-top: 21px;
+          display: flex;
+          flex-direction: column;
+          gap: 30px;
+        }
+        &-title &-triangle {
+          top: 0;
+          left: 400px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .map {
+    bottom: -10px;
+    .container {
+      width: 383px;
+    }
+    &__slider {
+      &-title &-triangle {
+        display: none;
+      }
     }
   }
 }

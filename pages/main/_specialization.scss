@@ -53,7 +53,7 @@
     -4.479% 100%,
     -4.479% 7.69%
   );
-  
+
   &__subtitle {
     margin-top: 40px;
     color: $color-text-opacity;
@@ -129,12 +129,27 @@
     }
   }
 }
-
+@media screen and (max-width: 900px) {
+  .specialization {
+    padding-top: 300px;
+    padding-bottom: 600px;
+  }
+}
 @media screen and (max-width: 700px) {
   .specialization {
+    padding-top: 600px;
+    .border-radius {
+      padding-block: 36px;
+    }
+    &__card:hover {
+      transform: scale(1);
+    }
+    &__card:hover + &__card {
+      transform: translateY(0);
+    }
     &__card {
       align-items: center;
-      margin-top: -20px;
+      margin-top: -21px;
       &-image {
         position: relative;
         flex: 0 0 30%;

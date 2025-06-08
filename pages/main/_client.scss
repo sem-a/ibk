@@ -100,12 +100,24 @@
   }
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1400px) {
   .client {
     width: 100%;
+
+    .container {
+      width: 1000px;
+    }
     &__slide-container img {
       width: 30%;
       height: auto;
+    }
+  }
+}
+@media screen and (max-width: 1200px) {
+  .client {
+    width: 100%;
+    .container {
+      width: 90%;
     }
   }
 }
@@ -119,11 +131,15 @@
 }
 @media screen and (max-width: 800px) {
   .client {
+    width: 95%;
     &__triangle {
       display: none;
     }
     &__container {
       padding: 30px;
+      &::after {
+        transform: skew(0deg, 0deg);
+      }
     }
     &__slide {
       height: 250px;
