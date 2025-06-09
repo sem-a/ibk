@@ -593,7 +593,7 @@
     transform: skew(0deg, 0deg);
   }
   .client__slide {
-    height: 250px;
+    height: 200px;
   }
   .client__slide-title {
     display: none;
@@ -605,8 +605,17 @@
     float: left;
     margin-right: 14px;
   }
+  .client__slider {
+    margin-top: 0px;
+  }
+  .client__slider-slide {
+    height: 200px;
+  }
+  .client__slider-buttons {
+    display: none;
+  }
   .client__slider-content {
-    height: 250px;
+    height: 200px;
     overflow: hidden;
   }
   .client__slider-buttons {

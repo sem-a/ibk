@@ -142,7 +142,7 @@
       }
     }
     &__slide {
-      height: 250px;
+      height: 200px;
       &-title {
         display: none;
       }
@@ -155,8 +155,15 @@
       }
     }
     &__slider {
+      margin-top: 0px;
+      &-slide {
+        height: 200px;
+      }
+      &-buttons {
+        display: none;
+      }
       &-content {
-        height: 250px;
+        height: 200px;
         overflow: hidden;
       }
       &-buttons {

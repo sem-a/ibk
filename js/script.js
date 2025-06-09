@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
         intervalTime: 5000,
         autoPlay: true,
         animation: true,
+        enableSwipe: true,
       };
 
       this.settings = { ...defaults, ...options };
@@ -32,6 +33,8 @@ document.addEventListener("DOMContentLoaded", () => {
       this.currentSlide = 0;
       this.degIndicator = 0;
       this.slideInterval = null;
+      this.touchStartX = 0;
+      this.touchEndX = 0;
 
       this.init();
     }
@@ -47,8 +50,43 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       });
 
+      if (this.settings.enableSwipe) {
+        this.addSwipeHandlers();
+      }
+
       if (this.settings.autoPlay) {
         this.startAutoPlay();
+      }
+    }
+
+    addSwipeHandlers() {
+      this.slider.addEventListener(
+        "touchstart",
+        (e) => {
+          this.touchStartX = e.changedTouches[0].screenX;
+          this.stopAutoPlay();
+        },
+        { passive: true }
+      );
+
+      this.slider.addEventListener(
+        "touchend",
+        (e) => {
+          this.touchEndX = e.changedTouches[0].screenX;
+          this.handleSwipe();
+          this.startAutoPlay();
+        },
+        { passive: true }
+      );
+    }
+
+    handleSwipe() {
+      const minSwipeDistance = 50;
+
+      if (this.touchStartX - this.touchEndX > minSwipeDistance) {
+        this.goToSlide(this.currentSlide + 1);
+      } else if (this.touchEndX - this.touchStartX > minSwipeDistance) {
+        this.goToSlide(this.currentSlide - 1);
       }
     }
 
@@ -101,6 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
     intervalTime: 5000,
     autoPlay: true,
     animation: true,
+    enableSwipe: true
   });
 
   const mapSlider = new Slider({
