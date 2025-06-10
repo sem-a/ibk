@@ -1,0 +1,35 @@
+@import "../../../scss/var";
+
+.marquee {
+  background-color: $background-color-regular;
+  overflow: hidden;
+  position: relative;
+  padding: 30px 0;
+
+  &__container {
+    display: flex;
+    width: 100%;
+  }
+  &__track {
+    display: flex;
+    align-items: center;
+    animation: scroll 30s linear infinite;
+    will-change: transform;
+
+    &-image {
+      height: 80px;
+      width: auto;
+      margin: 0 40px;
+      object-fit: contain;
+    }
+  }
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}

@@ -1,0 +1,39 @@
+@charset "UTF-8";
+/*          Шрифты           */
+/*****************************/
+/*        Background         */
+/*****************************/
+/*          Vacancy          */
+/*****************************/
+.marquee {
+  background-color: #d5eeff;
+  overflow: hidden;
+  position: relative;
+  padding: 30px 0;
+}
+.marquee__container {
+  display: flex;
+  width: 100%;
+}
+.marquee__track {
+  display: flex;
+  align-items: center;
+  animation: scroll 30s linear infinite;
+  will-change: transform;
+}
+.marquee__track-image {
+  height: 80px;
+  width: auto;
+  margin: 0 40px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}/*# sourceMappingURL=index.css.map */
