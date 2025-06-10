@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/scss/reset.css" />
+    <link rel="stylesheet" href="/scss/style.css" />
+    <link rel="stylesheet" href="/components/menu/menu.css" />
+    <link rel="stylesheet" href="./scss/index.css" />
+    <link rel="stylesheet" href="/components/footer/footer.css" />
+    <title>Направление деятельности</title>
+  </head>
+  <body>
+    <header class="header">
+      <nav class="nav">
+        <div class="nav__container">
+          <a class="nav__logo logo" href="/">
+            <img class="logo__image" src="/assest/logo.png" alt="logotype" />
+          </a>
+          <ul class="nav__list">
+            <li class="nav__item">
+              <a class="nav__link" href="/pages/specialization">О компании</a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__link" href="pages/news">Новости</a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__link" href="/pages/clients">Клиенты</a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__link" href="/pages/vacancy">Вакансии</a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__link" href="/pages/contact">Контакты</a>
+            </li>
+          </ul>
+        </div>
+        <div class="nav__controls">
+          <div class="nav__search">
+            <a class="nav__search-button" href="#"
+              ><img
+                class="nav__search-icon"
+                src="/assest/icons/search.svg"
+                alt="search button"
+            /></a>
+          </div>
+          <div class="nav__language">
+            <a href="#"
+              ><img src="/assest/icons/lang.svg" alt="toggle language"
+            /></a>
+          </div>
+          <div class="nav__burger">
+            <img
+              class="nav__burger-icon"
+              src="/assest/icons/burger.svg"
+              alt="burger button"
+            />
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="main">
+      <section class="welcome">
+        <div class="welcome-block container">
+          <div class="welcome__text welcome-text">
+            <h1 class="welcome__title title">Контакты</h1>
+            <p class="welcome__subtitle text">
+              Всегда открыты для диалога и готовы ответить на ваши вопросы
+            </p>
+          </div>
+          <img src="/img/contact.png" alt="safety" />
+        </div>
+      </section>
+
+      <section class="contact">
+        <div class="contact__container container">
+          <h2 class="contact__title title">
+            <div class="contact__triangle">
+              <div class="triangle"></div>
+            </div>
+            Контактная информация
+          </h2>
+          <div class="contact__flex">
+            <div class="contact__content"></div>
+            <div class="contact__map">
+              <script
+                type="text/javascript"
+                charset="utf-8"
+                async
+                src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Adbb6bc5e63b9cb024fb322c2b231f87039dfb20f954f93d298a99d5f93e1a6e6&amp;width=720&amp;height=720&amp;lang=ru_RU&amp;scroll=true"
+              ></script>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__container">
+        <h3 class="footer__company-name title">
+          Общество с ограниченной ответственностью «АЙ БИ КЕЙ»
+        </h3>
+        <div class="footer__flex">
+          <div class="footer__contacts">
+            <div class="footer__section">
+              <p class="footer__section-title">Адрес:</p>
+              <p class="footer__text">г. Санкт-Петербург, Невский проспект,</p>
+              <p class="footer__text">д. 104- А, пом. №9-Н (80), офис №224</p>
+            </div>
+            <div class="footer__section">
+              <p class="footer__section-title">Контакты:</p>
+              <p class="footer__text">
+                <a href="tel:+78136973040">+7 (81369) 7-30-40</a> (доб. 4029,
+                3095)
+              </p>
+              <a href="#" class="footer__text">office@ibkey.ru</a>
+            </div>
+          </div>
+          <div class="footer__menus">
+            <ul class="footer__menu-list">
+              <li class="footer__menu-item">
+                <a class="footer__menu-link" style="opacity: 1" href="#">
+                  <h5 class="title">Основная</h5>
+                </a>
+              </li>
+              <li class="footer__menu-item">
+                <a class="footer__menu-link" href="#">О компании</a>
+              </li>
+              <li class="footer__menu-item">
+                <a class="footer__menu-link" href="#">Виды деятельности</a>
+              </li>
+              <li class="footer__menu-item">
+                <a class="footer__menu-link" href="#">Контакты</a>
+              </li>
+            </ul>
+            <ul class="footer__menu-list">
+              <li class="footer__menu-item">
+                <a href="#" class="footer__menu-link" style="opacity: 1">
+                  <h5 class="title">Дополнительно</h5>
+                </a>
+              </li>
+              <li class="footer__menu-item">
+                <a class="footer__menu-link" href="#">Продукты</a>
+              </li>
+              <li class="footer__menu-item">
+                <a class="footer__menu-link" href="/pages/safety/index.html"
+                  >Охрана труда</a
+                >
+              </li>
+              <li class="footer__menu-item">
+                <a class="footer__menu-link" href="#">Вакансии</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer__line"></div>
+        <div class="footer__copyright">
+          <p class="footer__text">© Компания IBK 2025</p>
+          <a href="#" class="footer__text" style="text-decoration: underline"
+            >Холдинг «ТИТАН-2»</a
+          >
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+@import "../../../scss/var";
+
+.documents {
+  padding: 100px 0 300px 0;
+  background-color: $background-color-regular;
+  font-size: 22px;
+  &__flex {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 100px;
+    text-align: left;
+  }
+
+  &__item {
+    &-title {
+      padding: 4px 10px;
+      background-color: $background-color-dark;
+      color: $color-text-light;
+      border-radius: 8px;
+    }
+    &-list {
+      list-style: disc;
+      li {
+        margin-top: 20px;
+        margin-left: 21px;
+        list-style: disc;
+      }
+    }
+    &-link {
+      a {
+        color: $color-text;
+        border-bottom: 1px dashed;
+        transition: all 0.5s ease 0s;
+      }
+      a:hover {
+        color: $color-text-hover;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .documents {
+    font-size: 20px;
+    h4 {
+      font-size: 20px !important;
+    }
+    &__flex {
+      flex-direction: column;
+    }
+  }
+}

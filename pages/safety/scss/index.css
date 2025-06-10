@@ -1,0 +1,53 @@
+@charset "UTF-8";
+/*          Шрифты           */
+/*****************************/
+/*        Background         */
+/*****************************/
+/*          Vacancy          */
+/*****************************/
+.documents {
+  padding: 100px 0 300px 0;
+  background-color: #d5eeff;
+  font-size: 22px;
+}
+.documents__flex {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 100px;
+  text-align: left;
+}
+.documents__item-title {
+  padding: 4px 10px;
+  background-color: #0057a6;
+  color: white;
+  border-radius: 8px;
+}
+.documents__item-list {
+  list-style: disc;
+}
+.documents__item-list li {
+  margin-top: 20px;
+  margin-left: 21px;
+  list-style: disc;
+}
+.documents__item-link a {
+  color: #0057a6;
+  border-bottom: 1px dashed;
+  transition: all 0.5s ease 0s;
+}
+.documents__item-link a:hover {
+  color: rgba(0, 86, 166, 0.9);
+}
+
+@media screen and (max-width: 900px) {
+  .documents {
+    font-size: 20px;
+  }
+  .documents h4 {
+    font-size: 20px !important;
+  }
+  .documents__flex {
+    flex-direction: column;
+  }
+}/*# sourceMappingURL=index.css.map */
