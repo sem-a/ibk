@@ -150,7 +150,7 @@ h5.title {
   align-items: center;
   justify-content: center;
   gap: 14px;
-  padding: 240px 0 160px 0;
+  height: 100vh;
 }
 
 .welcome-text {
@@ -186,7 +186,8 @@ h5.title {
 }
 @media screen and (max-width: 900px) {
   .welcome-block {
-    padding: 240px 42px 160px;
+    height: auto;
+    padding: 100px 42px;
   }
   .welcome-text {
     min-height: 240px;

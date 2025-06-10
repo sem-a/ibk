@@ -1,0 +1,98 @@
+@import "../../../scss/var";
+
+.contact {
+  padding: 100px 0 200px 0;
+  background-color: $background-color-regular;
+  &__container {
+    padding: 0 105px;
+  }
+  &__title {
+    position: relative;
+  }
+  &__triangle {
+    position: absolute;
+    top: 50%;
+    transform: translate(-200%, -50%) rotate(90deg);
+  }
+  &__flex {
+    margin-top: 40px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 30px;
+  }
+  &__content {
+    &-title {
+      font-weight: 400 !important;
+    }
+  }
+  &__map {
+    padding: 5px;
+    border-radius: 40px;
+    background-color: $background-color-light;
+    width: 40%;
+    height: 576px;
+    iframe {
+      border-radius: 35px;
+    }
+  }
+  &__item {
+    margin-top: 30px;
+    &-title {
+      display: inline-block;
+      color: $color-text-light;
+      background-color: $background-color-dark;
+      padding: 4px 10px;
+      border-radius: 8px;
+    }
+    &-text {
+      margin-top: 12px;
+      a {
+        color: $color-text;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .contact {
+    &__content {
+      width: 100%;
+    }
+    &__map {
+      width: 100%;
+    }
+  }
+}
+@media screen and (max-width: 900px) {
+  .contact {
+    &__flex {
+      flex-direction: column;
+    }
+    &__content {
+      width: 100%;
+    }
+    &__map {
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .contact {
+    &__container {
+      padding: 0 14px;
+    }
+    &__map {
+      height: 400px;
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .contact {
+    &__map {
+      height: 300px;
+    }
+  }
+}
