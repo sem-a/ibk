@@ -82,6 +82,15 @@ li.nav__item a:hover::after {
   transition: all 0.35s ease;
 }
 
+.nav__link-icon {
+  display: none;
+  background: url(../../assest/icons/arrow-right.svg);
+  width: 24px;
+  height: 24px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
 .nav__controls {
   display: flex;
   align-items: center;
@@ -181,13 +190,37 @@ li.nav__item a:hover::after {
   .logo img {
     height: 40px;
   }
-  ul.nav__list {
-    display: none;
-  }
   .nav__burger {
     display: block;
   }
   .nav__search {
     display: none;
+  }
+  ul.nav__list {
+    display: none;
+  }
+  .nav-active ul.nav__list {
+    display: block;
+    position: absolute;
+    width: 100%;
+    top: 59px;
+    left: 0;
+    padding: 0 32px;
+    margin: 8px 0 0 0;
+    gap: 60px;
+  }
+  .nav-active li.nav__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 16px;
+    border-bottom: 1px solid #F2F2F2;
+  }
+  .nav-active li.nav__item a:hover::after {
+    width: 0%;
+  }
+  .nav__link-icon {
+    display: block;
   }
 }/*# sourceMappingURL=menu.css.map */
