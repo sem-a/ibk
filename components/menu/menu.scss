@@ -12,6 +12,10 @@ header.header {
   padding: 0px 120px;
   box-shadow: 0 4px 24px 0px rgba(0, 0, 0, 0.12);
 }
+header.nav-active {
+  height: 100vh;
+  background-color: white;
+}
 nav.nav {
   display: flex;
   align-items: center;
@@ -78,6 +82,51 @@ li.nav__item {
 }
 .nav__burger {
   display: none;
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+.burger {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 18px;
+  height: 2px;
+  background-color: $background-color-dark;
+  border-radius: 20px;
+}
+.burger::after,
+.burger::before {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 2px;
+  background-color: $background-color-dark;
+  border-radius: 20px;
+  transition: all 0.3s ease 0s;
+}
+.burger::after {
+  top: 6px;
+  left: 0;
+}
+.burger::before {
+  top: -6px;
+  left: 0;
+}
+.burger.nav-active {
+  background-color: inherit;
+}
+.burger.nav-active::after,
+.burger.nav-active::before {
+  top: 0;
+  left: 0;
+}
+.burger.nav-active::after {
+  transform: rotate(45deg);
+}
+.burger.nav-active::before {
+  transform: rotate(-45deg);
 }
 
 @media screen and (max-width: 1250px) {
@@ -103,6 +152,13 @@ li.nav__item {
     width: 100%;
     padding: 8px 32px;
     border-radius: 0px 0px 20px 20px;
+    height: 59px;
+    transition: 1s ease 0s;
+  }
+  header.nav-active {
+    height: 100vh;
+    transition: 1s ease 0s;
+    border-radius: 0px;
   }
   .logo img {
     height: 40px;
