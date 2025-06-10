@@ -180,6 +180,7 @@ li.nav__item a:hover::after {
     padding: 8px 32px;
     border-radius: 0px 0px 20px 20px;
     height: 59px;
+    overflow: hidden;
     transition: 1s ease 0s;
   }
   header.nav-active {
@@ -197,9 +198,6 @@ li.nav__item a:hover::after {
     display: none;
   }
   ul.nav__list {
-    display: none;
-  }
-  .nav-active ul.nav__list {
     display: block;
     position: absolute;
     width: 100%;
@@ -209,16 +207,26 @@ li.nav__item a:hover::after {
     margin: 8px 0 0 0;
     gap: 60px;
   }
-  .nav-active li.nav__item {
+  li.nav__item {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 16px;
     border-bottom: 1px solid #F2F2F2;
+    cursor: pointer;
   }
-  .nav-active li.nav__item a:hover::after {
+  li.nav__item a {
+    width: 100%;
+    padding: 22.5px 0px;
+  }
+  li.nav__item a:hover::after {
     width: 0%;
+  }
+  li.nav__item:hover {
+    background-color: rgba(0, 0, 0, 0.01);
+  }
+  li.nav__item:first-child {
+    border-top: 1px solid #F2F2F2;
   }
   .nav__link-icon {
     display: block;
