@@ -2,34 +2,245 @@
 
 .marquee {
   background-color: $background-color-regular;
-  overflow: hidden;
-  position: relative;
   padding: 30px 0;
 
-  &__container {
-    display: flex;
-    width: 100%;
-  }
   &__track {
     display: flex;
-    align-items: center;
-    animation: scroll 30s linear infinite;
-    will-change: transform;
-
+    width: 100vw;
+    margin: 0 auto;
+    overflow: hidden;
     &-image {
-      height: 80px;
-      width: auto;
-      margin: 0 40px;
+      width: 260px;
+      height: 62px;
       object-fit: contain;
+      margin-left: 40px;
+      flex-shrink: 0;
+      animation: marquee 10s linear infinite;
+      white-space: nowrap;
     }
   }
 }
 
-@keyframes scroll {
-    0% {
-        transform: translateX(0);
+.clients {
+  &__container {
+    padding: 120px 105px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 100px;
+  }
+
+  &__card {
+    flex: 1;
+    min-width: 400px;
+    background-color: $background-color-white;
+    box-shadow: $box-shadow;
+    &-image {
+      height: 46px;
+      width: auto;
     }
-    100% {
-        transform: translateX(-100%);
+    &-title {
+      margin-top: 10px;
+      padding: 10px 0px;
+      border-top: 1px solid #9bb0cf;
+      text-decoration: underline;
     }
+  }
+}
+
+.case {
+  background-color: $background-color-dark;
+  text-align: center;
+  padding: 150px 105px;
+  &__title {
+    display: inline-block;
+    color: $color-text-light !important;
+    position: relative;
+  }
+  &__triangle {
+    position: absolute;
+    top: 50%;
+    transform: translate(-200%, -50%) rotate(90deg);
+
+    .triangle {
+      background-color: $background-color-white;
+    }
+  }
+  &__slider {
+    margin-top: 40px;
+    &-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+    &-content {
+      margin-top: 20px;
+      height: 430px;
+      position: relative;
+    }
+    &-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: $background-color-light;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 30px;
+      text-align: left;
+      padding: 20px 40px;
+      border-radius: 20px;
+      opacity: 0;
+      transition: all 0.5s ease 0s;
+      &.case-active {
+        opacity: 1;
+      }
+    }
+  }
+  &__btn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    background-color: $background-color-light;
+    text-align: left;
+    border-radius: 10px;
+    padding: 12px 20px;
+    width: 33%;
+    opacity: 0.7;
+    transition: all 0.5s ease 0s;
+    &:hover {
+      opacity: 1;
+    }
+    &-text {
+      margin-top: 6px;
+      opacity: 0.8;
+    }
+  }
+  &__btn.case-active {
+    opacity: 1;
+  }
+
+  &__slide {
+    &-image {
+      display: inline-block;
+      background-color: $background-color-regular;
+      padding: 25px;
+      border-radius: 20px;
+      min-width: 390px;
+      img {
+        width: 100%;
+      }
+    }
+    &-text {
+      p {
+        margin-top: 30px;
+      }
+    }
+    &-list {
+      margin-top: 30px;
+    }
+    &-item {
+      position: relative;
+      margin-top: 10px;
+      margin-left: 24px;
+      &::before {
+        content: "";
+        position: absolute;
+        top: 48%;
+        transform: translate(-150%, -50%);
+        width: 16px;
+        height: 16px;
+        background: url(/assest/icons/marker.svg);
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1600px) {
+  .clients {
+    &__container {
+      gap: 50px;
+    }
+    &__card {
+      width: 300px;
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .case {
+    &__slide {
+      &-image {
+        min-width: 33%;
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1070px) {
+  .clients {
+    &__container {
+      padding: 120px 42px;
+      gap: 30px;
+    }
+    &__card {
+      min-width: 300px;
+    }
+  }
+}
+@media screen and (max-width: 800px) {
+  .case {
+    padding: 150px 42px;
+    &__slide {
+      &-image {
+        display: none;
+      }
+    }
+    &__btn {
+      &-text {
+        display: none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 690px) {
+  .clients {
+    &__container {
+      padding: 120px 32px;
+      gap: 30px;
+    }
+    &__card {
+      min-width: 300px;
+      width: 300px;
+    }
+  }
+
+  .case {
+    padding: 150px 32px;
+    &__slider {
+      &-slide {
+        padding: 20px 20px;
+      }
+      &-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+    }
+    &__btn {
+      min-width: 145px;
+      width: 145px;
+    }
+  }
 }

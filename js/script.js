@@ -138,27 +138,4 @@ document.addEventListener("DOMContentLoaded", () => {
       burgerButton.children[0].classList.add("nav-active");
     }
   });
-
-  const clientSlider = new Slider({
-    sliderContainer: "client__slider",
-    slideClass: "client__slider-slide",
-    buttonClass: "client__slider-btn",
-    activeClass: "client-active",
-    indicatorClass: "client__triangle",
-    intervalTime: 5000,
-    autoPlay: true,
-    animation: true,
-    enableSwipe: true,
-  });
-
-  const mapSlider = new Slider({
-    sliderContainer: "map__slider",
-    slideClass: "map__slide",
-    buttonClass: "map__slider-point",
-    activeClass: "map-active",
-    indicatorClass: "map__slider-triangle",
-    intervalTime: 5000,
-    autoPlay: true,
-    animation: true,
-  });
 });

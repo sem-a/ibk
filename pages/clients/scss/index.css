@@ -7,33 +7,216 @@
 /*****************************/
 .marquee {
   background-color: #d5eeff;
-  overflow: hidden;
-  position: relative;
   padding: 30px 0;
-}
-.marquee__container {
-  display: flex;
-  width: 100%;
 }
 .marquee__track {
   display: flex;
-  align-items: center;
-  animation: scroll 30s linear infinite;
-  will-change: transform;
+  width: 100vw;
+  margin: 0 auto;
+  overflow: hidden;
 }
 .marquee__track-image {
-  height: 80px;
-  width: auto;
-  margin: 0 40px;
+  width: 260px;
+  height: 62px;
   -o-object-fit: contain;
      object-fit: contain;
+  margin-left: 40px;
+  flex-shrink: 0;
+  animation: marquee 10s linear infinite;
+  white-space: nowrap;
 }
 
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
+.clients__container {
+  padding: 120px 105px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 100px;
+}
+.clients__card {
+  flex: 1;
+  min-width: 400px;
+  background-color: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.clients__card-image {
+  height: 46px;
+  width: auto;
+}
+.clients__card-title {
+  margin-top: 10px;
+  padding: 10px 0px;
+  border-top: 1px solid #9bb0cf;
+  text-decoration: underline;
+}
+
+.case {
+  background-color: #0057a6;
+  text-align: center;
+  padding: 150px 105px;
+}
+.case__title {
+  display: inline-block;
+  color: white !important;
+  position: relative;
+}
+.case__triangle {
+  position: absolute;
+  top: 50%;
+  transform: translate(-200%, -50%) rotate(90deg);
+}
+.case__triangle .triangle {
+  background-color: white;
+}
+.case__slider {
+  margin-top: 40px;
+}
+.case__slider-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+.case__slider-content {
+  margin-top: 20px;
+  height: 430px;
+  position: relative;
+}
+.case__slider-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f6fbff;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 30px;
+  text-align: left;
+  padding: 20px 40px;
+  border-radius: 20px;
+  opacity: 0;
+  transition: all 0.5s ease 0s;
+}
+.case__slider-slide.case-active {
+  opacity: 1;
+}
+.case__btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  background-color: #f6fbff;
+  text-align: left;
+  border-radius: 10px;
+  padding: 12px 20px;
+  width: 33%;
+  opacity: 0.7;
+  transition: all 0.5s ease 0s;
+}
+.case__btn:hover {
+  opacity: 1;
+}
+.case__btn-text {
+  margin-top: 6px;
+  opacity: 0.8;
+}
+.case__btn.case-active {
+  opacity: 1;
+}
+.case__slide-image {
+  display: inline-block;
+  background-color: #d5eeff;
+  padding: 25px;
+  border-radius: 20px;
+  min-width: 390px;
+}
+.case__slide-image img {
+  width: 100%;
+}
+.case__slide-text p {
+  margin-top: 30px;
+}
+.case__slide-list {
+  margin-top: 30px;
+}
+.case__slide-item {
+  position: relative;
+  margin-top: 10px;
+  margin-left: 24px;
+}
+.case__slide-item::before {
+  content: "";
+  position: absolute;
+  top: 48%;
+  transform: translate(-150%, -50%);
+  width: 16px;
+  height: 16px;
+  background: url(/assest/icons/marker.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+@media screen and (max-width: 1600px) {
+  .clients__container {
+    gap: 50px;
   }
-  100% {
-    transform: translateX(-100%);
+  .clients__card {
+    width: 300px;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .case__slide-image {
+    min-width: 33%;
+  }
+  .case__slide-image img {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 1070px) {
+  .clients__container {
+    padding: 120px 42px;
+    gap: 30px;
+  }
+  .clients__card {
+    min-width: 300px;
+  }
+}
+@media screen and (max-width: 800px) {
+  .case {
+    padding: 150px 42px;
+  }
+  .case__slide-image {
+    display: none;
+  }
+  .case__btn-text {
+    display: none;
+  }
+}
+@media screen and (max-width: 690px) {
+  .clients__container {
+    padding: 120px 32px;
+    gap: 30px;
+  }
+  .clients__card {
+    min-width: 300px;
+    width: 300px;
+  }
+  .case {
+    padding: 150px 32px;
+  }
+  .case__slider-slide {
+    padding: 20px 20px;
+  }
+  .case__slider-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .case__btn {
+    min-width: 145px;
+    width: 145px;
   }
 }/*# sourceMappingURL=index.css.map */
