@@ -64,11 +64,23 @@
 }
 
 @media screen and (max-width: 1000px) {
+  .footer__flex {
+    flex-wrap: wrap;
+  }
   .footer__container {
     padding: 40px 32px;
   }
-  .footer__menus {
+  .footer .menu-main {
     display: none;
+  }
+  .footer .menu-optionally li {
+    display: none;
+  }
+  .footer .menu-optionally li:first-child {
+    display: block;
+  }
+  .footer .menu-optionally li:nth-child(3) {
+    display: block;
   }
   .footer__contacts {
     flex-direction: row;
@@ -85,12 +97,6 @@
 @media screen and (max-width: 750px) {
   .footer__container {
     padding: 40px 16px;
-  }
-  .footer__contacts {
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 16px;
   }
   .footer__section-title, .footer__text, .footer__menu-link, .footer__text a {
     font-size: 15px;

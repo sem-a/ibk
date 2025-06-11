@@ -65,11 +65,25 @@
 
 @media screen and (max-width: 1000px) {
   .footer {
+    &__flex {
+      flex-wrap: wrap;
+    }
     &__container {
       padding: 40px 32px;
     }
-    &__menus {
+    .menu-main {
       display: none;
+    }
+    .menu-optionally{
+      li {
+        display: none;
+      }
+      li:first-child {
+        display: block;
+      }
+      li:nth-child(3) {
+        display: block;
+      }
     }
     &__contacts {
       flex-direction: row;
@@ -92,12 +106,6 @@
   .footer {
     &__container {
       padding: 40px 16px;
-    }
-    &__contacts {
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: flex-start;
-      gap: 16px;
     }
     &__section-title,
     &__text,
