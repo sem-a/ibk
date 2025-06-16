@@ -159,8 +159,28 @@
   flex-wrap: wrap;
 }
 
+@media screen and (max-width: 900px) {
+  .news .container {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .news__category {
+    padding: 21px 14px;
+  }
+  .news__category::after {
+    transform: skew(-5deg, 0);
+  }
+  .news__category-list {
+    gap: 14px;
+  }
+}
 @media screen and (max-width: 700px) {
   .news {
     padding-top: 200px;
+  }
+}
+@media screen and (max-width: 520px) {
+  .news__item {
+    width: 90%;
   }
 }/*# sourceMappingURL=index.css.map */

@@ -66,9 +66,32 @@
     flex-wrap: wrap;
   }
 }
-
+@media screen and (max-width: 900px) {
+  .news {
+    .container {
+      width: 90%;
+      margin: 0 auto;
+    }
+    &__category {
+      padding: 21px 14px;
+      &::after {
+        transform: skew(-5deg, 0);
+      }
+      &-list {
+        gap: 14px;
+      }
+    }
+  }
+}
 @media screen and (max-width: 700px) {
   .news {
     padding-top: 200px;
+  }
+}
+@media screen and (max-width: 520px) {
+  .news {
+    &__item {
+      width: 90%;
+    }
   }
 }
