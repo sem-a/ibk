@@ -21,6 +21,15 @@
         cursor: grabbing;
       }
     }
+    &-slide {
+      padding: 21px 105px;
+      background-color: $background-color-dark;
+      color: $color-text-light;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 21px;
+    }
   }
   &__btn {
     position: relative;
@@ -75,6 +84,37 @@
     border-radius: 20px;
     p {
       font-size: 16px;
+    }
+  }
+  &__slide {
+    &-title {
+      margin-top: 7px;
+    }
+    &-text {
+      p {
+        margin-top: 21px;
+      }
+    }
+    &-li {
+      position: relative;
+      margin-top: 14px;
+      margin-left: 32px;
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translateX(-150%);
+        width: 21px;
+        height: 21px;
+        background: url(../../../assest/icons/marker-white.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: 50% 50%;
+      }
+      span {
+        font-weight: 700;
+      }
     }
   }
 }
