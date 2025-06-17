@@ -1,155 +1,99 @@
-class ProjectSlider {
-  constructor(options) {
-    this.container = document.querySelector(options.container);
-    this.slidesContainer = this.container.querySelector(options.slidesContainer);
-    this.slides = this.container.querySelectorAll(options.slideClass);
-    this.prevBtn = this.container.querySelector(options.prevBtn);
-    this.nextBtn = this.container.querySelector(options.nextBtn);
-    this.dots = this.container.querySelectorAll(options.dotClass);
-    this.slidesToScroll = options.slidesToScroll || 1;
-    
-    this.currentIndex = 0;
-    this.isDragging = false;
-    this.startX = 0;
-    this.currentTranslate = 0;
-    this.prevTranslate = 0;
-    
-    this.init();
-  }
+document.addEventListener('DOMContentLoaded', function() {
+  const slider = document.querySelector('.project__slider');
+  const content = document.querySelector('.project__slider-content');
+  const slides = document.querySelectorAll('.project__slider-slide');
+  const prevBtn = document.querySelector('.project__slider-btn.prev');
+  const nextBtn = document.querySelector('.project__slider-btn.next');
+  const stepBtns = document.querySelectorAll('.step-btn');
   
-  init() {
-    // Установка начальной позиции
-    this.updateSlider();
-    
-    // Обработчики кнопок
-    this.prevBtn.addEventListener('click', () => this.prevSlide());
-    this.nextBtn.addEventListener('click', () => this.nextSlide());
-    
-    // Обработчики точек
-    this.dots.forEach((dot, index) => {
-      dot.addEventListener('click', () => this.goToSlide(index * this.slidesToScroll));
-    });
-    
-    // Обработчики для свайпа
-    this.slidesContainer.addEventListener('mousedown', this.touchStart.bind(this));
-    this.slidesContainer.addEventListener('touchstart', this.touchStart.bind(this));
-    this.slidesContainer.addEventListener('mouseup', this.touchEnd.bind(this));
-    this.slidesContainer.addEventListener('touchend', this.touchEnd.bind(this));
-    this.slidesContainer.addEventListener('mousemove', this.touchMove.bind(this));
-    this.slidesContainer.addEventListener('touchmove', this.touchMove.bind(this));
-    this.slidesContainer.addEventListener('mouseleave', this.touchEnd.bind(this));
-    
-    // Адаптация к изменению размера окна
-    window.addEventListener('resize', () => {
-      this.updateSlider();
-    });
-  }
+  let currentIndex = 0;
+  let step = 1;
+  let touchStartX = 0;
+  let touchEndX = 0;
   
-  updateSlider() {
-    const slideWidth = this.slides[0].offsetWidth;
-    this.slidesContainer.style.transform = `translateX(-${this.currentIndex * slideWidth}px)`;
-    this.updateDots();
-  }
+  // Клонируем первые и последние слайды для бесшовного перехода
+  const firstSlide = slides[0].cloneNode(true);
+  const lastSlide = slides[slides.length - 1].cloneNode(true);
   
-  nextSlide() {
-    this.currentIndex += this.slidesToScroll;
-    if (this.currentIndex >= this.slides.length) {
-      this.currentIndex = 0;
-    }
-    this.updateSlider();
-  }
+  content.insertBefore(lastSlide, slides[0]);
+  content.appendChild(firstSlide);
   
-  prevSlide() {
-    this.currentIndex -= this.slidesToScroll;
-    if (this.currentIndex < 0) {
-      this.currentIndex = this.slides.length - this.slidesToScroll;
-    }
-    this.updateSlider();
-  }
+  currentIndex = 1;
+  updateSlider();
   
-  goToSlide(index) {
-    this.currentIndex = index;
-    this.updateSlider();
-  }
-  
-  updateDots() {
-    const activeDotIndex = Math.floor(this.currentIndex / this.slidesToScroll);
-    this.dots.forEach((dot, index) => {
-      dot.classList.toggle('active', index === activeDotIndex);
-    });
-  }
-  
-  // Методы для свайпа
-  touchStart(e) {
-    if (e.type === 'touchstart') {
-      this.startX = e.touches[0].clientX;
-    } else {
-      this.startX = e.clientX;
-      e.preventDefault();
-    }
-    
-    this.isDragging = true;
-    this.slidesContainer.style.transition = 'none';
-  }
-  
-  touchEnd(e) {
-    if (!this.isDragging) return;
-    this.isDragging = false;
-    
-    const movedBy = this.currentTranslate - this.prevTranslate;
-    this.slidesContainer.style.transition = 'transform 0.5s ease';
-    
-    if (movedBy < -50) {
-      this.nextSlide();
-    } else if (movedBy > 50) {
-      this.prevSlide();
-    } else {
-      this.updateSlider();
-    }
-  }
-  
-  touchMove(e) {
-    if (!this.isDragging) return;
-    
-    let currentX;
-    if (e.type === 'touchmove') {
-      currentX = e.touches[0].clientX;
-    } else {
-      currentX = e.clientX;
-    }
-    
-    const diff = currentX - this.startX;
-    this.currentTranslate = diff;
-    const slideWidth = this.slides[0].offsetWidth;
-    this.slidesContainer.style.transform = `translateX(calc(-${this.currentIndex * slideWidth}px + ${diff}px))`;
-  }
-}
-
-// Инициализация слайдера
-document.addEventListener('DOMContentLoaded', () => {
-  const slider = new ProjectSlider({
-    container: '.project__slider',
-    slidesContainer: '.project__slider-content',
-    slideClass: '.project__slider-slide',
-    prevBtn: '.project__slider-prev',
-    nextBtn: '.project__slider-next',
-    dotClass: '.project__slider-btn',
-    slidesToScroll: 1 // Можно изменить на 2 или 3 для прокрутки нескольких слайдов
+  // Обработчики кнопок
+  prevBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex - step + slides.length) % slides.length;
+    if (currentIndex === 0) currentIndex = slides.length;
+    updateSlider();
   });
   
-  // Адаптация количества отображаемых слайдов
-  function handleResize() {
-    const width = window.innerWidth;
-    if (width >= 1024) {
-      slider.slidesToScroll = 3;
-    } else if (width >= 768) {
-      slider.slidesToScroll = 2;
-    } else {
-      slider.slidesToScroll = 1;
+  nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex + step) % (slides.length + 1);
+    if (currentIndex === slides.length + 1) currentIndex = 1;
+    updateSlider();
+  });
+  
+  // Обработчики выбора шага
+  stepBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      stepBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      step = parseInt(btn.dataset.step);
+    });
+  });
+  
+  // Обработчики свайпа
+  slider.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].screenX;
+  });
+  
+  slider.addEventListener('touchend', e => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  });
+  
+  function handleSwipe() {
+    const threshold = 50;
+    if (touchEndX < touchStartX - threshold) {
+      // Свайп влево
+      currentIndex = (currentIndex + 1) % (slides.length + 1);
+      if (currentIndex === slides.length + 1) currentIndex = 1;
+      updateSlider();
+    } else if (touchEndX > touchStartX + threshold) {
+      // Свайп вправо
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      if (currentIndex === 0) currentIndex = slides.length;
+      updateSlider();
     }
-    slider.updateSlider();
   }
   
-  window.addEventListener('resize', handleResize);
-  handleResize();
+  function updateSlider() {
+    const slideWidth = slider.offsetWidth;
+    content.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+    
+    // Бесшовный переход
+    setTimeout(() => {
+      if (currentIndex >= slides.length) {
+        currentIndex = 1;
+        content.style.transition = 'none';
+        content.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+        setTimeout(() => {
+          content.style.transition = 'transform 0.5s ease';
+        });
+      } else if (currentIndex <= 0) {
+        currentIndex = slides.length - 1;
+        content.style.transition = 'none';
+        content.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+        setTimeout(() => {
+          content.style.transition = 'transform 0.5s ease';
+        });
+      }
+    }, 500);
+  }
+  
+  // Адаптация к изменению размера окна
+  window.addEventListener('resize', () => {
+    updateSlider();
+  });
 });
