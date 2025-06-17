@@ -1,9 +1,12 @@
-class InfiniteButtonCarousel {
+class CenteredButtonSlider {
   constructor(options) {
     this.buttonsContainer = document.querySelector(options.buttonsContainer);
-    this.buttons = Array.from(this.buttonsContainer.querySelectorAll(options.buttonClass));
+    this.buttons = this.buttonsContainer.querySelectorAll(options.buttonClass);
+    this.slidesContainer = document.querySelector(options.slidesContainer);
+    this.slides = this.slidesContainer.querySelectorAll(options.slideClass);
     this.activeClass = options.activeClass;
     this.intervalTime = options.intervalTIME || 7000;
+    this.centerButtons = true;
     
     this.currentIndex = 0;
     this.isDragging = false;
@@ -11,32 +14,15 @@ class InfiniteButtonCarousel {
     this.scrollLeft = 0;
     this.autoSlideInterval = null;
     
-    // Клонируем элементы для бесконечного эффекта
-    this.setupInfiniteItems();
     this.init();
   }
   
-  setupInfiniteItems() {
-    // Клонируем первые и последние элементы
-    const firstClone = this.buttons[0].cloneNode(true);
-    const lastClone = this.buttons[this.buttons.length - 1].cloneNode(true);
-    
-    firstClone.dataset.clone = "true";
-    lastClone.dataset.clone = "true";
-    
-    // Добавляем клоны в конец и начало
-    this.buttonsContainer.appendChild(firstClone);
-    this.buttonsContainer.insertBefore(lastClone, this.buttonsContainer.firstChild);
-    
-    // Обновляем список кнопок
-    this.buttons = Array.from(this.buttonsContainer.querySelectorAll(options.buttonClass));
-  }
-  
   init() {
-    // Устанавливаем начальную позицию (первый оригинальный элемент)
-    this.scrollToButton(this.currentIndex + 1); // +1 потому что добавили клон в начале
+    // Set initial active button and slide
+    this.setActiveButton(this.currentIndex);
+    this.setActiveSlide(this.currentIndex);
     
-    // Обработчики кликов
+    // Add click handlers
     this.buttons.forEach(button => {
       button.addEventListener('click', () => {
         const buttonIndex = parseInt(button.dataset.slide) - 1;
@@ -44,101 +30,62 @@ class InfiniteButtonCarousel {
       });
     });
     
-    // Обработчики для бесконечной прокрутки
-    this.buttonsContainer.addEventListener('scroll', this.handleScroll.bind(this));
-    
-    // Drag & touch события
+    // Add drag functionality
     this.addDragHandlers();
     
-    // Автопрокрутка
+    // Start auto-rotation
     if (this.intervalTime) {
       this.startAutoSlide();
     }
   }
   
-  handleScroll() {
-    const container = this.buttonsContainer;
-    const containerWidth = container.offsetWidth;
-    const scrollWidth = container.scrollWidth;
+  setActiveButton(index) {
+    // Update current index
+    this.currentIndex = index;
     
-    // Если прокрутили до клона в начале
-    if (container.scrollLeft < containerWidth / 2) {
-      container.scrollLeft = scrollWidth - containerWidth * 1.5;
-    } 
-    // Если прокрутили до клона в конце
-    else if (container.scrollLeft > scrollWidth - containerWidth * 1.5) {
-      container.scrollLeft = containerWidth / 2;
-    }
-    
-    // Определяем текущий активный элемент
-    this.updateActiveButton();
-  }
-  
-  updateActiveButton() {
-    const container = this.buttonsContainer;
-    const containerWidth = container.offsetWidth;
-    const scrollLeft = container.scrollLeft;
-    
-    // Находим элемент ближайший к центру
-    let closestButton = null;
-    let minDistance = Infinity;
-    
-    this.buttons.forEach(button => {
-      if (button.dataset.clone) return; // Игнорируем клоны
-      
-      const buttonRect = button.getBoundingClientRect();
-      const buttonCenter = buttonRect.left + buttonRect.width / 2 - container.getBoundingClientRect().left;
-      const distance = Math.abs(buttonCenter - containerWidth / 2);
-      
-      if (distance < minDistance) {
-        minDistance = distance;
-        closestButton = button;
-      }
-    });
-    
-    if (closestButton) {
-      const buttonIndex = parseInt(closestButton.dataset.slide) - 1;
-      if (buttonIndex !== this.currentIndex) {
-        this.currentIndex = buttonIndex;
-        this.updateButtonClasses();
-      }
-    }
-  }
-  
-  updateButtonClasses() {
-    this.buttons.forEach(button => {
-      if (button.dataset.clone) return;
-      
-      const buttonIndex = parseInt(button.dataset.slide) - 1;
+    // Update button classes
+    this.buttons.forEach((button, i) => {
       button.classList.remove(this.activeClass);
-      
-      if (buttonIndex === this.currentIndex) {
+      if (i === index) {
         button.classList.add(this.activeClass);
       }
     });
+    
+    // Center the active button
+    this.centerActiveButton();
   }
   
-  scrollToButton(index) {
-    const button = this.buttons[index + 1]; // +1 из-за клона в начале
-    if (!button) return;
+  setActiveSlide(index) {
+    // Update slides visibility
+    this.slides.forEach((slide, i) => {
+      slide.style.display = i === index ? 'flex' : 'none';
+    });
+  }
+  
+  centerActiveButton() {
+    const activeButton = this.buttons[this.currentIndex];
+    const containerWidth = this.buttonsContainer.offsetWidth;
+    const buttonWidth = activeButton.offsetWidth;
+    const buttonLeft = activeButton.offsetLeft;
     
-    const container = this.buttonsContainer;
-    const containerWidth = container.offsetWidth;
-    const buttonRect = button.getBoundingClientRect();
-    const buttonCenter = buttonRect.left + buttonRect.width / 2 - container.getBoundingClientRect().left;
+    const scrollTo = buttonLeft - (containerWidth / 2) + (buttonWidth / 2);
     
-    container.scrollTo({
-      left: container.scrollLeft + buttonCenter - containerWidth / 2,
+    this.buttonsContainer.scrollTo({
+      left: scrollTo,
       behavior: 'smooth'
     });
   }
   
   goToButton(index) {
-    if (index < 0) index = this.buttons.length - 3; // -3 из-за 2 клонов и индексации с 0
-    if (index >= this.buttons.length - 2) index = 0; // -2 из-за клонов
+    // Handle cyclic navigation
+    if (index < 0) {
+      index = this.buttons.length - 1;
+    } else if (index >= this.buttons.length) {
+      index = 0;
+    }
     
-    this.currentIndex = index;
-    this.scrollToButton(index);
+    this.setActiveButton(index);
+    this.setActiveSlide(index);
     this.resetAutoSlide();
   }
   
@@ -162,15 +109,86 @@ class InfiniteButtonCarousel {
   }
   
   addDragHandlers() {
-    // ... (такой же код для drag & touch как в предыдущем примере)
+    this.buttonsContainer.addEventListener('mousedown', (e) => {
+      this.isDragging = true;
+      this.startX = e.pageX - this.buttonsContainer.offsetLeft;
+      this.scrollLeft = this.buttonsContainer.scrollLeft;
+    });
+    
+    this.buttonsContainer.addEventListener('mouseleave', () => {
+      this.isDragging = false;
+    });
+    
+    this.buttonsContainer.addEventListener('mouseup', () => {
+      this.isDragging = false;
+      // После завершения перетаскивания активируем ближайший слайд
+      this.updateActiveOnDragEnd();
+    });
+    
+    this.buttonsContainer.addEventListener('mousemove', (e) => {
+      if (!this.isDragging) return;
+      e.preventDefault();
+      const x = e.pageX - this.buttonsContainer.offsetLeft;
+      const walk = (x - this.startX) * 2;
+      this.buttonsContainer.scrollLeft = this.scrollLeft - walk;
+    });
+    
+    // Touch events for mobile
+    this.buttonsContainer.addEventListener('touchstart', (e) => {
+      this.isDragging = true;
+      this.startX = e.touches[0].pageX - this.buttonsContainer.offsetLeft;
+      this.scrollLeft = this.buttonsContainer.scrollLeft;
+    });
+    
+    this.buttonsContainer.addEventListener('touchend', () => {
+      this.isDragging = false;
+      // После завершения перетаскивания активируем ближайший слайд
+      this.updateActiveOnDragEnd();
+    });
+    
+    this.buttonsContainer.addEventListener('touchmove', (e) => {
+      if (!this.isDragging) return;
+      e.preventDefault();
+      const x = e.touches[0].pageX - this.buttonsContainer.offsetLeft;
+      const walk = (x - this.startX) * 2;
+      this.buttonsContainer.scrollLeft = this.scrollLeft - walk;
+    });
+  }
+  
+  updateActiveOnDragEnd() {
+    const container = this.buttonsContainer;
+    const containerWidth = container.offsetWidth;
+    const scrollLeft = container.scrollLeft;
+    
+    // Находим кнопку, ближайшую к центру
+    let closestButton = null;
+    let minDistance = Infinity;
+    
+    this.buttons.forEach((button, index) => {
+      const buttonRect = button.getBoundingClientRect();
+      const buttonCenter = buttonRect.left + buttonRect.width / 2 - container.getBoundingClientRect().left;
+      const distance = Math.abs(buttonCenter - containerWidth / 2);
+      
+      if (distance < minDistance) {
+        minDistance = distance;
+        closestButton = button;
+      }
+    });
+    
+    if (closestButton) {
+      const buttonIndex = parseInt(closestButton.dataset.slide) - 1;
+      this.goToButton(buttonIndex);
+    }
   }
 }
 
-// Инициализация
+// Инициализация слайдера
 document.addEventListener('DOMContentLoaded', () => {
-  const carousel = new InfiniteButtonCarousel({
+  const buttonSlider = new CenteredButtonSlider({
     buttonsContainer: '.specialization__slider-buttons',
     buttonClass: '.specialization__btn',
+    slidesContainer: '.specialization__slider-content',
+    slideClass: '.specialization__slider-slide',
     activeClass: 'specialization-active',
     intervalTIME: 7000
   });
