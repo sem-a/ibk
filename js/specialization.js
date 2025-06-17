@@ -1,219 +1,152 @@
-class CentredSlider {
+class CenteredButtonSlider {
   constructor(options) {
-    const defaults = {
-      sliderContainer: ".slider",
-      buttonsContainer: ".slider-buttons",
-      slideClass: ".slider-slide",
-      buttonClass: ".slide-btn",
-      activeClass: ".active",
-      intervalTime: 5000,
-      autoPlay: true,
-      enableSwipe: true,
-      centerButtons: true,
-      buttonsScrollBehavior: "smooth",
-    };
-
-    this.settings = {
-      ...defaults,
-      ...options,
-    };
-
-    this.slider = document.querySelector(this.settings.sliderContainer);
-    if (!this.slider) return;
-
-    this.buttonsContainer = this.slider.querySelector(
-      this.settings.buttonsContainer
-    );
-    this.slides = Array.from(
-      this.slider.querySelectorAll(this.settings.slideClass)
-    );
-    this.buttons = Array.from(
-      this.slider.querySelectorAll(this.settings.buttonClass)
-    );
-
-    this.currentSlide = 0;
-    this.slideInterval = null;
+    this.buttonsContainer = document.querySelector(options.buttonsContainer);
+    this.buttons = this.buttonsContainer.querySelectorAll(options.buttonClass);
+    this.activeClass = options.activeClass;
+    this.intervalTime = options.intervalTIME || 7000;
+    this.centerButtons = true;
+    
+    this.currentIndex = 0;
     this.isDragging = false;
     this.startX = 0;
-    this.currTranslate = 0;
-    this.prevTranslate = 0;
-    this.animationID = null;
-
+    this.scrollLeft = 0;
+    this.autoSlideInterval = null;
+    
     this.init();
   }
-
+  
   init() {
-    const activeSlide = this.slider.querySelector(
-      `${this.settings.slideClass}${this.settings.activeClass}`
-    );
-    const activeButton = this.slider.querySelector(
-      `${this.settings.buttonClass}${this.settings.activeClass}`
-    );
-
-    if (activeSlide) {
-      this.currSlide = this.slides.indexOf(activeSlide);
-    }
-    if (activeButton && this.currSlide !== this.buttons.indexOf(activeButton)) {
-      this.currSlide = this.buttons.indexOf(activeButton);
-    }
-
-    this.setupEventListners();
-    this.goToSlide(this.currSlide);
-
-    if (this.settings.autoPlay) {
-      this.startAutoPlay();
-    }
-  }
-
-  setupEventListners() {
-    this.buttons.forEach((button, index) => {
-      button.addEventListener("click", (e) => {
-        e.preventDefault();
-        this.stopAutoPlay();
-        this.goToSlide(index);
-        this.startAutoPlay();
+    // Set initial active button
+    this.setActiveButton(this.currentIndex);
+    
+    // Add click handlers
+    this.buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const buttonIndex = parseInt(button.dataset.slide) - 1;
+        this.goToButton(buttonIndex);
       });
     });
-
-    if (this.settings.enableSwipe) {
-      this.slides.forEach((slide) => {
-        slide.addEventListener("touchstart", this.touchStart.bind(this), {
-          passive: true,
-        });
-        slide.addEventListener("touchend", this.touchEnd.bind(this), {
-          passive: false,
-        });
-        slide.addEventListener("touchmove", this.touchMove.bind(this), {
-          passive: false,
-        });
-
-        slide.addEventListener("mousedown", this.touchStart.bind(this));
-        slide.addEventListener("mouseup", this.touchEnd.bind(this));
-        slide.addEventListener("mouseleave", this.touchEnd.bind(this));
-        slide.addEventListener("mousemove", this.touchMove.bind(this));
-      });
+    
+    // Add drag functionality
+    this.addDragHandlers();
+    
+    // Start auto-rotation
+    if (this.intervalTime) {
+      this.startAutoSlide();
     }
   }
-
-  touchStart(e) {
-    if (e.type === "touchstart") {
-      this.startX = e.touches[0].clientX;
-    } else {
-      this.startX = e.clientX;
-      e.preventDefault();
-    }
-
-    this.isDragging = true;
-    this.animationID = requestAnimationFrame(this.anumation.bind(this));
-    this.stopAutoPlay();
-  }
-
-  touchEnd(e) {
-    this.isDragging(false);
-    cancelAnimationFrame(this.animationID);
-
-    const movedBy = this.currTranslate - this.prevTranslate;
-    if (movedBy < -100) {
-      this.nextSlide();
-    } else if (movedBy > 100) {
-      this.prevSlide();
-    } else {
-      this.goToSlide(this.currSlide);
-    }
-
-    if (this.settings.autoPlay) {
-      this.startAutoPlay();
-    }
-  }
-
-  touchMove(e) {
-    if (!this.isDragging) return;
-
-    let currX;
-    if (e.type === "touchmove") {
-      currX = e.touches[0].clientX;
-      e.preventDefault();
-    } else {
-      currX = e.clientX;
-      e.preventDefault();
-    }
-
-    const movedBy = currX - this.startX;
-    this.currTranslate = movedBy;
-  }
-
-  animation() {
-    this.setSliderPosition();
-    if (this.isDragging) {
-      requestAnimationFrame(this.animation.bind(this));
-    }
-  }
-
-  setSliderPosition() {
-    this.slides.forEach((slide) => {
-      slide.style.transform = `translateX(${this.currTranslate}px)`;
+  
+  setActiveButton(index) {
+    // Update current index
+    this.currentIndex = index;
+    
+    // Update button classes
+    this.buttons.forEach((button, i) => {
+      button.classList.remove(this.activeClass);
+      if (i === index) {
+        button.classList.add(this.activeClass);
+      }
     });
+    
+    // Center the active button
+    this.centerActiveButton();
   }
-
-  goToSlide(n) {
-    this.slides.forEach((slide) => {
-      slide.classList.remove(this.settings.activeClass);
-    });
-    this.buttons.forEach((button) => {
-      button.classList.remove(this.settings.activeClass);
-    });
-
-    this.currentSlide = (n + this.slides.length) % this.slides.length;
-
-    this.slides[this.currSlide].classList.add(this.settings.activeClass);
-    this.buttons[this.currSlide].classList.add(this.settings.activeClass);
-
-    if (this.settings.centerButtons) {
-      this.centerActiveButton();
-    }
-
-    this.currTranslate = 0;
-    this.prevTranslate = 0;
-    this.slides.forEach((slide) => {
-      slide.style.transform = "translateX(0)";
-    });
-  }
-
+  
   centerActiveButton() {
-    const activeBtn = this.buttons[this.currSlide];
+    const activeButton = this.buttons[this.currentIndex];
     const containerWidth = this.buttonsContainer.offsetWidth;
-    const btnWidth = activeBtn.offsetWidth;
-    const btnLeft = acctiveBtn.offsetLeft;
-
-    const scrollTo = btnLeft - containerWidth / 2 + btnWidth / 2;
-
+    const buttonWidth = activeButton.offsetWidth;
+    const buttonLeft = activeButton.offsetLeft;
+    
+    const scrollTo = buttonLeft - (containerWidth / 2) + (buttonWidth / 2);
+    
     this.buttonsContainer.scrollTo({
       left: scrollTo,
-      behavior: this.settings.buttons.ScrollBehavior,
+      behavior: 'smooth'
     });
   }
-
-  nextSlide() {
-    this.goToSlide(this.currSlide + 1);
-  }
-
-  prevSlide() {
-    this.goToSlide(this.currSlide - 1);
-  }
-
-  startAutoPlay() {
-    this.stopAutoPlay();
-
-    if (this.settings.autoPlay) {
-      this.slideInterval = setInterval(() => {
-        this.nextSlide();
-      }, this.settings.intervalTime);
+  
+  goToButton(index) {
+    // Handle cyclic navigation
+    if (index < 0) {
+      index = this.buttons.length - 1;
+    } else if (index >= this.buttons.length) {
+      index = 0;
     }
+    
+    this.setActiveButton(index);
+    this.resetAutoSlide();
   }
-
-  stopAutoPlay() {
-    if (this.slideInterval) {
-      clearInterval(this.slideInterval);
-    }
+  
+  nextButton() {
+    this.goToButton(this.currentIndex + 1);
+  }
+  
+  prevButton() {
+    this.goToButton(this.currentIndex - 1);
+  }
+  
+  startAutoSlide() {
+    this.autoSlideInterval = setInterval(() => {
+      this.nextButton();
+    }, this.intervalTime);
+  }
+  
+  resetAutoSlide() {
+    clearInterval(this.autoSlideInterval);
+    this.startAutoSlide();
+  }
+  
+  addDragHandlers() {
+    this.buttonsContainer.addEventListener('mousedown', (e) => {
+      this.isDragging = true;
+      this.startX = e.pageX - this.buttonsContainer.offsetLeft;
+      this.scrollLeft = this.buttonsContainer.scrollLeft;
+    });
+    
+    this.buttonsContainer.addEventListener('mouseleave', () => {
+      this.isDragging = false;
+    });
+    
+    this.buttonsContainer.addEventListener('mouseup', () => {
+      this.isDragging = false;
+    });
+    
+    this.buttonsContainer.addEventListener('mousemove', (e) => {
+      if (!this.isDragging) return;
+      e.preventDefault();
+      const x = e.pageX - this.buttonsContainer.offsetLeft;
+      const walk = (x - this.startX) * 2;
+      this.buttonsContainer.scrollLeft = this.scrollLeft - walk;
+    });
+    
+    // Touch events for mobile
+    this.buttonsContainer.addEventListener('touchstart', (e) => {
+      this.isDragging = true;
+      this.startX = e.touches[0].pageX - this.buttonsContainer.offsetLeft;
+      this.scrollLeft = this.buttonsContainer.scrollLeft;
+    });
+    
+    this.buttonsContainer.addEventListener('touchend', () => {
+      this.isDragging = false;
+    });
+    
+    this.buttonsContainer.addEventListener('touchmove', (e) => {
+      if (!this.isDragging) return;
+      e.preventDefault();
+      const x = e.touches[0].pageX - this.buttonsContainer.offsetLeft;
+      const walk = (x - this.startX) * 2;
+      this.buttonsContainer.scrollLeft = this.scrollLeft - walk;
+    });
   }
 }
+
+// Инициализация слайдера
+document.addEventListener('DOMContentLoaded', () => {
+  const buttonSlider = new CenteredButtonSlider({
+    buttonsContainer: '.specialization__slider-buttons',
+    buttonClass: '.specialization__btn',
+    activeClass: 'specialization-active',
+    intervalTIME: 7000
+  });
+});
