@@ -4,6 +4,9 @@
 
 body {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   font-family: $font-family;
   font-weight: 400;
   color: $color-text;
@@ -13,6 +16,14 @@ body {
 
 body.modal-open {
   overflow: hidden;
+}
+
+main {
+  flex-grow: 1;
+}
+
+footer {
+  flex-shrink: 0;
 }
 
 .container {
@@ -210,3 +221,30 @@ h5.title {
 }
 
 /***************/
+
+/* Формы */
+
+.form-input,
+.form-textarea,
+.form-button {
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  font-size: 15px;
+  background-color: $background-color-white;
+  color: black;
+}
+.form-input:focus,
+.form-textarea:focus,
+.form-button:focus {
+  box-shadow: 0px 0px 4px $background-color-regular;
+  border: 1px inner solid $background-color-regular;
+}
+.form-textarea {
+  resize: none;
+  height: 136px;
+  border: none;
+  outline: none;
+}
+/*********/

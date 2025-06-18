@@ -1,12 +1,14 @@
 @import "../../../scss/var";
 
 .advantages {
+  padding: 105px 0px;
   &__container {
     text-align: center;
     border-radius: 40px;
     background-color: $background-color-dark;
     color: $color-text-light;
     padding: 42px;
+    height: 600px;
   }
   &__title {
     display: inline-block;
@@ -23,9 +25,10 @@
   }
   &__flex {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     gap: 60px;
+    margin-top: 31px;
   }
   &__image {
     border-radius: 20px;
@@ -36,11 +39,277 @@
   &__list {
     text-align: left;
     &-item {
-      list-style: disc;
       font-size: 24px;
       padding: 21px 0px;
       border-bottom: 1px solid $background-color-white;
       cursor: pointer;
+      transition: all 0.3s ease 0s;
+      &.advantages-active {
+        .advantages__list-content {
+          max-height: 80px;
+          padding-bottom: 15px;
+        }
+        .advantages__list-icon {
+          transform: rotate(-90deg);
+        }
+      }
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+    &-header {
+      width: 100%;
+      gap: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    &-icon {
+      position: relative;
+      width: 36px;
+      height: 36px;
+      background: url(../../../assest/icons/arrow-light.svg);
+      background-repeat: no-repeat;
+      background-size: contain;
+      fill: white;
+      transform: rotate(90deg);
+      transition: all 0.5s ease 0s;
+    }
+    &-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.5s ease 0s;
+      padding: 0;
+    }
+  }
+}
+
+.vacancy {
+  background-color: $background-color-regular;
+  text-align: center;
+  width: 100%;
+  .border-radius {
+    padding: 16px 16px 42px 16px;
+  }
+  &__container {
+    width: 100%;
+    padding: 85px 105px 132px 105px;
+    margin: 0 auto;
+  }
+  &__title {
+    position: relative;
+    display: inline-block;
+  }
+  &__triangle {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(200%, -50%) rotate(90deg);
+  }
+  &__list {
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+  }
+  &__item {
+    cursor: pointer;
+    text-align: left;
+    position: relative;
+    min-width: 420px;
+    max-width: 420px;
+    flex: 1;
+    background-color: $background-color-white;
+    transition: all 0.35s ease 0s;
+    &-flex {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      height: 100px;
+    }
+    &-image {
+      height: 100%;
+    }
+    &-subtitle {
+      color: $color-vacancy-item;
+    }
+  }
+  &__item:hover {
+    transition: all 0.35s ease 0s;
+    transform: scale(1.1);
+  }
+  &__details {
+    cursor: pointer;
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    p {
+      font-size: 16px;
+    }
+    &-arrow {
+      margin-top: 2px;
+      width: 16px;
+      height: 16px;
+      background: url(../../assest/icons/arrow-right.svg);
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+  }
+  &__details:hover {
+    text-decoration: underline;
+  }
+  &__task {
+    &-title {
+      font-size: 16px;
+      color: $color-vacancy-item;
+    }
+    &-list {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    &-marker {
+      min-width: 12px;
+      min-height: 12px;
+      margin-top: 3px;
+      background: url(../../assest/icons/marker-light.svg);
+      background-size: contain;
+      background-repeat: none;
+    }
+    &-item {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      width: 100%;
+      gap: 10px;
+      p {
+        color: $color-vacancy-item;
+      }
+    }
+  }
+}
+
+.steps {
+  padding: 105px 0px;
+  background-color: $background-color-dark;
+  &__container {
+    position: relative;
+  }
+  &__title {
+    position: relative;
+    color: $color-text-light !important;
+  }
+  &__triangle {
+    position: absolute;
+    top: 20%;
+    transform: translate(-200%, -50%) rotate(75deg);
+    .triangle {
+      background-color: $background-color-white;
+    }
+  }
+  &__number {
+    display: inline-block;
+    padding: 16px;
+    border-radius: 50%;
+    background-color: $background-color-regular;
+    color: #9bb0cf;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  }
+  &__card {
+    position: relative;
+    width: 400px;
+    display: inline-block;
+    background-color: $background-color-white;
+    padding: 16px;
+    border-radius: 20px;
+    height: 200px;
+    overflow: hidden;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    &-image {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 208px;
+      transform: translateY(50%) rotate(-15deg);
+    }
+  }
+}
+
+.feedback {
+  padding: 105px 0px;
+  text-align: center;
+  &__container {
+    display: inline-block;
+    background-color: $background-color-dark;
+    padding: 60px 120px;
+    border-radius: 40px;
+  }
+  &__title {
+    display: inline-block;
+    position: relative;
+    color: $color-text-light !important;
+  }
+  &__triangle {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(200%, -50%) rotate(90deg);
+    .triangle {
+      background-color: $background-color-white;
+    }
+  }
+  &__flex {
+    margin-top: 21px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+  }
+  &__form {
+    width: 450px;
+  }
+  &__form-item {
+    margin-top: 16px;
+  }
+}
+
+@media screen and (max-width: 1520px) {
+  .vacancy {
+    &__container::after {
+      width: 90%;
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .vacancy {
+    &__item:nth-child(3) {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .advantages {
+    &__container {
+      padding: 42px;
+    }
+    &__image {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .vacancy {
+    &__item:nth-child(2) {
+      display: none;
     }
   }
 }

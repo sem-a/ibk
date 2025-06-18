@@ -148,6 +148,6 @@ document.addEventListener("DOMContentLoaded", () => {
     buttonClass: ".specialization__btn",
     slideClass: ".specialization__slider-slide",
     activeClass: "specialization-active",
-    intervalTIME: 7000,
+    intervalTIME: 5000,
   });
 });
