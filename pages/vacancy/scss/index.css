@@ -1,0 +1,49 @@
+@charset "UTF-8";
+/*          Шрифты           */
+/*****************************/
+/*        Background         */
+/*****************************/
+/*          Vacancy          */
+/*****************************/
+.advantages__container {
+  text-align: center;
+  border-radius: 40px;
+  background-color: #0057a6;
+  color: white;
+  padding: 42px;
+}
+.advantages__title {
+  display: inline-block;
+  position: relative;
+  color: white !important;
+}
+.advantages__triangle {
+  position: absolute;
+  top: 50%;
+  transform: translate(-150%, -50%) rotate(90deg);
+}
+.advantages__triangle .triangle {
+  background-color: white;
+}
+.advantages__flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+}
+.advantages__image {
+  border-radius: 20px;
+  width: 40%;
+  padding: 105px;
+  background-color: white;
+}
+.advantages__list {
+  text-align: left;
+}
+.advantages__list-item {
+  list-style: disc;
+  font-size: 24px;
+  padding: 21px 0px;
+  border-bottom: 1px solid white;
+  cursor: pointer;
+}/*# sourceMappingURL=index.css.map */

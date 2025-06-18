@@ -1,0 +1,46 @@
+@import "../../../scss/var";
+
+.advantages {
+  &__container {
+    text-align: center;
+    border-radius: 40px;
+    background-color: $background-color-dark;
+    color: $color-text-light;
+    padding: 42px;
+  }
+  &__title {
+    display: inline-block;
+    position: relative;
+    color: $color-text-light !important;
+  }
+  &__triangle {
+    position: absolute;
+    top: 50%;
+    transform: translate(-150%, -50%) rotate(90deg);
+    .triangle {
+      background-color: $background-color-white;
+    }
+  }
+  &__flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+  }
+  &__image {
+    border-radius: 20px;
+    width: 40%;
+    padding: 105px;
+    background-color: $background-color-white;
+  }
+  &__list {
+    text-align: left;
+    &-item {
+      list-style: disc;
+      font-size: 24px;
+      padding: 21px 0px;
+      border-bottom: 1px solid $background-color-white;
+      cursor: pointer;
+    }
+  }
+}

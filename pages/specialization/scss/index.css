@@ -9,10 +9,9 @@
   margin-bottom: 40px;
 }
 .specialization__slider-buttons {
-  padding-inline: 105px;
+  padding: 42px 105px;
   width: 100%;
   display: flex;
-  align-items: center;
   gap: 60px;
   min-height: 260px;
   overflow-x: auto;
@@ -40,7 +39,7 @@
   align-items: center;
   justify-content: center;
   gap: 21px;
-  transition: opacity 1s ease 0s;
+  transition: opacity 0.5s ease 0s;
 }
 .specialization__slider-slide.specialization-active {
   display: flex;
@@ -49,7 +48,7 @@
 .specialization__btn {
   position: relative;
   cursor: pointer;
-  height: 100%;
+  height: auto;
   text-align: left;
   display: flex;
   align-items: center;
@@ -59,7 +58,7 @@
   background-color: #F2F2F2;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
   min-width: 520px;
-  transition: all 1s ease 0s;
+  transition: all 0.5s ease 0s;
 }
 .specialization__btn-title {
   display: inline-block;
@@ -164,32 +163,4 @@
 .technologies__image {
   margin-top: 42px;
   width: 70%;
-}
-
-.project {
-  background-color: #0057a6;
-}
-.project__container {
-  padding: 100px 87px;
-}
-.project__slider-content {
-  display: flex;
-  justify-content: center;
-  gap: 63px;
-}
-.project__slider-slide {
-  background-color: #f6fbff;
-  max-width: 500px;
-}
-.project__slide-title {
-  color: black;
-}
-.project__slide-text {
-  color: #263238;
-}
-.project__slide-image {
-  margin-top: 12px;
-  margin-bottom: 24px;
-  border-bottom: 1px solid #F2F2F2;
-  border-radius: 21px;
 }/*# sourceMappingURL=index.css.map */
