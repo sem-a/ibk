@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -10,8 +10,63 @@
     <link rel="stylesheet" href="./scss/index.css" />
     <link rel="stylesheet" href="/components/footer/footer.css" />
     <title>Направление деятельности</title>
-  </head>
-  <body>
+    <style>
+        /* Стили для модального окна */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            display: none;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            position: relative;
+            background: white;
+            margin: 5% auto;
+            padding: 40px;
+            border-radius: 16px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-weight: bold;
+        }
+
+        .modal-title {
+            margin-bottom: 20px;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        /* Отключение прокрутки body при открытом модальном окне */
+        body.modal-open {
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <!-- Ваш существующий HTML код -->
     <header class="header">
       <nav class="nav">
         <div class="nav__container">
@@ -681,5 +736,74 @@
     <script src="/js/menu.js"></script>
     <script src="/js/specialization.js"></script>
     <script src="/js/carousel.js"></script>
-  </body>
+    <!-- Добавьте этот скрипт в конец body -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Получаем все слайды проектов
+            const projectSlides = document.querySelectorAll('.project__slider-slide');
+            
+            // Создаем модальное окно
+            const modalOverlay = document.createElement('div');
+            modalOverlay.className = 'modal-overlay';
+            
+            const modalContent = document.createElement('div');
+            modalContent.className = 'modal-content';
+            
+            const closeButton = document.createElement('button');
+            closeButton.className = 'modal-close';
+            closeButton.innerHTML = '&times;';
+            
+            modalContent.appendChild(closeButton);
+            modalOverlay.appendChild(modalContent);
+            document.body.appendChild(modalOverlay);
+            
+            // Функция для открытия модального окна
+            function openModal(slide) {
+                const title = slide.querySelector('.project__slide-title').textContent;
+                const imageSrc = slide.querySelector('.project__slide-image').src;
+                const description = slide.querySelector('p').textContent;
+                
+                modalContent.innerHTML = `
+                    <button class="modal-close">&times;</button>
+                    <h3 class="modal-title">${title}</h3>
+                    <img src="${imageSrc}" alt="${title}" class="modal-image">
+                    <div class="modal-description">${description}</div>
+                `;
+                
+                modalOverlay.style.display = 'block';
+                document.body.classList.add('modal-open');
+                
+                // Добавляем обработчик закрытия для нового крестика
+                modalContent.querySelector('.modal-close').addEventListener('click', closeModal);
+            }
+            
+            // Функция для закрытия модального окна
+            function closeModal() {
+                modalOverlay.style.display = 'none';
+                document.body.classList.remove('modal-open');
+            }
+            
+            // Добавляем обработчики клика на слайды
+            projectSlides.forEach(slide => {
+                slide.addEventListener('click', function() {
+                    openModal(this);
+                });
+            });
+            
+            // Закрытие по клику вне модального окна
+            modalOverlay.addEventListener('click', function(e) {
+                if (e.target === modalOverlay) {
+                    closeModal();
+                }
+            });
+            
+            // Закрытие по нажатию ESC
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modalOverlay.style.display === 'block') {
+                    closeModal();
+                }
+            });
+        });
+    </script>
+</body>
 </html>
