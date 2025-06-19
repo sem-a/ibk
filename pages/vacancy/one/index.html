@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/scss/reset.css" />
+    <link rel="stylesheet" href="/scss/style.css" />
+    <link rel="stylesheet" href="/components/menu/menu.css" />
+    <link rel="stylesheet" href="./scss/index.css" />
+    <link rel="stylesheet" href="/components/footer/footer.css" />
+
+    <title>Вакансии</title>
+  </head>
+  <body>
+    <header class="header">
+      <nav class="nav">
+        <div class="nav__container">
+          <a class="nav__logo logo" href="/">
+            <img
+              class="logo__image"
+              src="/assest/logo/ibk_logo.png"
+              alt="logotype"
+            />
+          </a>
+          <ul class="nav__list">
+            <li class="nav__item">
+              <a class="nav__link" href="/pages/specialization">О компании</a>
+              <div class="nav__link-icon"></div>
+            </li>
+            <li class="nav__item">
+              <a class="nav__link" href="/pages/news">Новости</a>
+              <div class="nav__link-icon"></div>
+            </li>
+            <li class="nav__item">
+              <a class="nav__link" href="/pages/clients">Клиенты</a>
+              <div class="nav__link-icon"></div>
+            </li>
+            <li class="nav__item">
+              <a class="nav__link" href="/pages/vacancy">Вакансии</a>
+              <div class="nav__link-icon"></div>
+            </li>
+            <li class="nav__item">
+              <a class="nav__link" href="/pages/contact">Контакты</a>
+              <div class="nav__link-icon"></div>
+            </li>
+          </ul>
+        </div>
+        <div class="nav__controls">
+          <div class="nav__search">
+            <a class="nav__search-button" href="#"
+              ><img
+                class="nav__search-icon"
+                src="/assest/icons/search.svg"
+                alt="search button"
+            /></a>
+          </div>
+          <div class="nav__language">
+            <a href="#"
+              ><img src="/assest/icons/lang.svg" alt="toggle language"
+            /></a>
+          </div>
+          <div class="nav__burger"><div class="burger"></div></div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="main">
+      <section class="vacancy">
+        <div class="vacancy__header">
+          <div class="vacancy__header-container container">
+            <a href="/pages/vacancy/" class="vacancy__back">К вакансиям</a>
+            <div class="vacancy__header-flex">
+              <img
+                src="/img/vacancy.png"
+                alt="vacancy"
+                class="vacancy__header-image"
+              />
+              <h3 class="vacancy__title title">
+                Системный администратор Linux
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="vacancy__task">
+          <div class="vacancy__task-container container">
+            <h5 class="vacancy__task-title title">
+              <div class="vacancy__triangle"><div class="triangle"></div></div>
+              Задачи
+            </h5>
+            <ul class="vacancy__task-list">
+              <li class="vacancy__task-item text">
+                Обеспечение доступности серверной инфраструктуры и сервисов в
+                режиме 24/7, контроль и предотвращение аварийных ситуаций, сбоев
+                оборудования и сервисов компании
+              </li>
+              <li class="vacancy__task-item text">
+                Обслуживание серверного оборудования, создание отказоустойчивой
+                внутренней инфраструктуры, мониторинг
+              </li>
+              <li class="vacancy__task-item text">
+                Администрирование, развертывание системного и прикладного ПО
+              </li>
+              <li class="vacancy__task-item text">
+                Выполнение регламентов по обслуживанию внутренней инфраструктуры
+                и сервисов
+              </li>
+              <li class="vacancy__task-item text">
+                Инсталляция инфраструктуры с нуля, для дочерних компаний и
+                совместных проектов компании на базе импорт замещаемого или
+                свободного ПО
+              </li>
+              <li class="vacancy__task-item text">
+                Обеспечение архивации и резервного копирования, сохранности и
+                миграции данных между географически распределенными площадками
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="vacancy__await">
+          <div class="vacancy__await-container container">
+            <h5 class="vacancy__await-title title">
+              <div class="vacancy__triangle"><div class="triangle"></div></div>
+              Ожидания от соискателя
+            </h5>
+            <ul class="vacancy__await-list">
+              <li class="vacancy__await-item text">
+                Опыт администрирования ОС семейства UNIX/Linux (AstraLinux,
+                Ubuntu, Debian) - от 1-го года
+              </li>
+              <li class="vacancy__await-item text">
+                Знание систем виртуализации KVM/QEMU
+              </li>
+              <li class="vacancy__await-item text">
+                Знание систем управления контейнерами Docker, Kubernеtes
+              </li>
+              <li class="vacancy__await-item text">
+                Опыт развертывания и управления *nix рабочими станциями и
+                серверами Ansible/SaltStack
+              </li>
+              <li class="vacancy__await-item text">
+                Желателен опыт построения кластерных решений
+              </li>
+              <li class="vacancy__await-item text">
+                Администрирование веб серверов и прокси apache, nginx, haproxy
+              </li>
+              <li class="vacancy__await-item text">
+                Опыт работы с Postfix, Сommunigate pro или другими почтовыми
+                системами
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact">
+        <div class="contact__container container">
+          <h5 class="contact__title title">
+            <div class="contact__triangle"><div class="triangle"></div></div>
+            Для отклика на вакансию
+          </h5>
+          <div class="contact__flex">
+            <div class="contact__item">
+              <a href="tel:+7 (81369) 7-30-40" class="contact__phone-number"
+                >+7 (81369) 7-30-40 (доб. 52542)</a
+              >
+            </div>
+            <div class="contact__item">
+              <a href="#" class="contact__email">ibk-personal@ibkey.ru</a>
+            </div>
+            <div class="contact__item">
+              <a href="#" class="contact__telegram">@aabT2</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__container">
+        <h3 class="footer__company-name title">
+          Общество с ограниченной ответственностью «АЙ БИ КЕЙ»
+        </h3>
+        <div class="footer__flex">
+          <div class="footer__contacts">
+            <div class="footer__section">
+              <p class="footer__section-title">Адрес:</p>
+              <p class="footer__text">г. Санкт-Петербург, Невский проспект,</p>
+              <p class="footer__text">д. 104- А, пом. №9-Н (80), офис №224</p>
+            </div>
+            <div class="footer__section">
+              <p class="footer__section-title">Контакты:</p>
+              <p class="footer__text">
+                <a href="tel:+78136973040">+7 (81369) 7-30-40</a> (доб. 4029,
+                3095)
+              </p>
+              <a href="#" class="footer__text">office@ibkey.ru</a>
+            </div>
+          </div>
+          <div class="footer__menus">
+            <ul class="footer__menu-list">
+              <li class="footer__menu-item">
+                <a class="footer__menu-link" style="opacity: 1" href="#">
+                  <h5 class="title">Основная</h5>
+                </a>
+              </li>
+              <li class="footer__menu-item">
+                <a class="footer__menu-link" href="#">О компании</a>
+              </li>
+              <li class="footer__menu-item">
+                <a class="footer__menu-link" href="#">Виды деятельности</a>
+              </li>
+              <li class="footer__menu-item">
+                <a class="footer__menu-link" href="#">Контакты</a>
+              </li>
+            </ul>
+            <ul class="footer__menu-list">
+              <li class="footer__menu-item">
+                <a href="#" class="footer__menu-link" style="opacity: 1">
+                  <h5 class="title">Дополнительно</h5>
+                </a>
+              </li>
+              <li class="footer__menu-item">
+                <a class="footer__menu-link" href="#">Продукты</a>
+              </li>
+              <li class="footer__menu-item">
+                <a class="footer__menu-link" href="/pages/safety/index.html"
+                  >Охрана труда</a
+                >
+              </li>
+              <li class="footer__menu-item">
+                <a class="footer__menu-link" href="#">Вакансии</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer__line"></div>
+        <div class="footer__copyright">
+          <p class="footer__text">© Компания IBK 2025</p>
+          <a href="#" class="footer__text" style="text-decoration: underline"
+            >Холдинг «ТИТАН-2»</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script src="/js/menu.js"></script>
+    <script src="/js/accordion.js"></script>
+  </body>
+</html>

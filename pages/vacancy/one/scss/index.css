@@ -1,0 +1,186 @@
+@charset "UTF-8";
+/*          Шрифты           */
+/*****************************/
+/*        Background         */
+/*****************************/
+/*          Vacancy          */
+/*****************************/
+.vacancy {
+  padding-bottom: 150px;
+}
+.vacancy__back {
+  position: relative;
+  color: #0057a6;
+}
+.vacancy__back::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translate(-100%, -52%) rotate(180deg);
+  width: 24px;
+  height: 24px;
+  background: url(../../../../assest/icons/arrow-right.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.vacancy__back:hover {
+  text-decoration: underline;
+}
+.vacancy__header {
+  padding-top: 150px;
+  background-color: #d5eeff;
+}
+.vacancy__header-flex {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.vacancy__header-image {
+  width: 30%;
+}
+.vacancy__task {
+  margin-top: 115px;
+}
+.vacancy__task-title {
+  margin-bottom: 40px;
+  position: relative;
+}
+.vacancy__task-item {
+  position: relative;
+  color: #838281;
+  margin-top: 16px;
+}
+.vacancy__task-item::before {
+  position: absolute;
+  top: 0;
+  transform: translate(-150%, 0);
+  content: "";
+  width: 20px;
+  height: 20px;
+  background: url(../../../../assest/icons/marker-light.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.vacancy__triangle {
+  position: absolute;
+  top: 48%;
+  transform: translate(-150%, -50%) scale(0.5) rotate(90deg);
+}
+.vacancy__await {
+  margin-top: 60px;
+}
+.vacancy__await-title {
+  margin-bottom: 40px;
+  position: relative;
+}
+.vacancy__await-item {
+  position: relative;
+  color: #838281;
+  margin-top: 16px;
+}
+.vacancy__await-item::before {
+  position: absolute;
+  top: 0;
+  transform: translate(-150%, 0);
+  content: "";
+  width: 20px;
+  height: 20px;
+  background: url(../../../../assest/icons/marker-light.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.contact {
+  padding-bottom: 105px;
+}
+.contact__title {
+  position: relative;
+}
+.contact__triangle {
+  position: absolute;
+  top: 50%;
+  transform: translate(-200%, -50%) rotate(90deg);
+}
+.contact__container {
+  position: relative;
+  padding: 80px 160px;
+}
+.contact__container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  border-radius: 20px;
+  width: 90%;
+  height: 100%;
+  background-color: #d5eeff;
+  transform: translate(-50%, 0%) skew(-10deg, 0deg);
+  z-index: -1;
+}
+.contact__flex {
+  margin-top: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 80px;
+}
+.contact__phone-number, .contact__email, .contact__telegram {
+  position: relative;
+}
+.contact__phone-number::before, .contact__email::before, .contact__telegram::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translate(-150%, -50%);
+  width: 24px;
+  height: 24px;
+}
+.contact__item a {
+  color: rgba(0, 86, 166, 0.9);
+  transition: all 0.5s ease 0s;
+}
+.contact__item a:hover {
+  color: #0057a6;
+  text-decoration: underline;
+}
+.contact__phone-number::before {
+  background: url(../../../../assest/icons/phone.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.contact__email::before {
+  background: url(../../../../assest/icons/mail.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.contact__telegram::before {
+  background: url(../../../../assest/icons/telegram.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+@media screen and (max-width: 1050px) {
+  .contact__flex {
+    flex-direction: column;
+    gap: 21px;
+    align-items: flex-start;
+  }
+}
+@media screen and (max-width: 600px) {
+  .vacancy__header {
+    padding-bottom: 42px;
+  }
+  .vacancy__header-flex {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .contact__container {
+    padding: 40px 70px;
+  }
+  .contact__container::after {
+    transform: translate(-50%, 0%) skew(-3deg, 0deg);
+  }
+  .contact__title {
+    margin-left: 50px;
+  }
+}/*# sourceMappingURL=index.css.map */

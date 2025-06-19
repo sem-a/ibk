@@ -1,0 +1,194 @@
+@import "../../../../scss/var";
+.vacancy {
+  padding-bottom: 150px;
+  &__back {
+    position: relative;
+    color: $color-text;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      transform: translate(-100%, -52%) rotate(180deg);
+      width: 24px;
+      height: 24px;
+      background: url(../../../../assest/icons/arrow-right.svg);
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  &__header {
+    padding-top: 150px;
+    background-color: $background-color-regular;
+    &-flex {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    &-image {
+      width: 30%;
+    }
+  }
+
+  &__task {
+    margin-top: 115px;
+    &-title {
+      margin-bottom: 40px;
+      position: relative;
+    }
+    &-item {
+      position: relative;
+      color: $color-vacancy-item;
+      margin-top: 16px;
+      &::before {
+        position: absolute;
+        top: 0;
+        transform: translate(-150%, 0);
+        content: "";
+        width: 20px;
+        height: 20px;
+        background: url(../../../../assest/icons/marker-light.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+    }
+  }
+  &__triangle {
+    position: absolute;
+    top: 48%;
+    transform: translate(-150%, -50%) scale(0.5) rotate(90deg);
+  }
+
+  &__await {
+    margin-top: 60px;
+    &-title {
+      margin-bottom: 40px;
+      position: relative;
+    }
+    &-item {
+      position: relative;
+      color: $color-vacancy-item;
+      margin-top: 16px;
+      &::before {
+        position: absolute;
+        top: 0;
+        transform: translate(-150%, 0);
+        content: "";
+        width: 20px;
+        height: 20px;
+        background: url(../../../../assest/icons/marker-light.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+    }
+  }
+}
+
+.contact {
+  padding-bottom: 105px;
+  &__title {
+    position: relative;
+  }
+  &__triangle {
+    position: absolute;
+    top: 50%;
+    transform: translate(-200%, -50%) rotate(90deg);
+  }
+  &__container {
+    position: relative;
+    padding: 80px 160px;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      border-radius: 20px;
+      width: 90%;
+      height: 100%;
+      background-color: $background-color-regular;
+      transform: translate(-50%, 0%) skew(-10deg, 0deg);
+      z-index: -1;
+    }
+  }
+  &__flex {
+    margin-top: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 80px;
+  }
+  &__phone-number,
+  &__email,
+  &__telegram {
+    position: relative;
+  }
+  &__phone-number::before,
+  &__email::before,
+  &__telegram::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translate(-150%, -50%);
+    width: 24px;
+    height: 24px;
+  }
+  &__item {
+    a {
+      color: $color-text-hover;
+      transition: all 0.5s ease 0s;
+      &:hover {
+        color: $color-text;
+        text-decoration: underline;
+      }
+    }
+  }
+  &__phone-number::before {
+    background: url(../../../../assest/icons/phone.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  &__email::before {
+    background: url(../../../../assest/icons/mail.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  &__telegram::before {
+    background: url(../../../../assest/icons/telegram.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  .contact {
+    &__flex {
+      flex-direction: column;
+      gap: 21px;
+      align-items: flex-start;
+    }
+  }
+}
+@media screen and (max-width: 600px) {
+  .vacancy {
+    &__header {
+        padding-bottom: 42px;
+      &-flex {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  }
+  .contact {
+    &__container {
+      padding: 40px 70px;
+      &::after {
+        transform: translate(-50%, 0%) skew(-3deg, 0deg);
+      }
+    }
+    &__title {
+      margin-left: 50px;
+    }
+  }
+}
