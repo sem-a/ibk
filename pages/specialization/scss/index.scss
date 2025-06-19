@@ -132,6 +132,17 @@
 
 .technologies {
   text-align: center;
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    z-index: -2;
+    background-color: $background-color-dark;
+  }
   &__container {
     position: relative;
     padding: 42px 105px;
@@ -168,12 +179,14 @@
 
 .project {
   background-color: $background-color-dark;
+  text-align: center;
   padding: 150px 0px;
   &__container {
     width: 80%;
     margin: 0 auto;
   }
   &__title {
+    display: inline-block;
     position: relative;
     color: $color-text-light !important;
   }
@@ -187,11 +200,11 @@
   }
 }
 .project__slider {
+  text-align: justify;
   position: relative;
   overflow: hidden;
   width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
+  margin: 60px auto;
 }
 
 .project__slider-track {
@@ -201,14 +214,14 @@
 
 .project__slider-slide {
   flex: 0 0 33.33%;
-  padding: 0 10px;
+  padding: 0 20px;
   box-sizing: border-box;
 }
 
 .project__slide-content {
   background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   padding: 20px;
   height: 100%;
 }
@@ -218,7 +231,7 @@
   height: 200px;
   object-fit: cover;
   border-radius: 8px;
-  margin-bottom: 15px;
+  margin-block: 15px;
 }
 
 .project__slide-content h3 {
@@ -245,23 +258,63 @@
   border: none;
   cursor: pointer;
   font-size: 2rem;
-  color: #333;
-  transition: color 0.3s;
+  color: white;
+  transition: all 0.3s ease;
 }
 
 .project__slider-btn:hover {
-  color: #007bff;
+  opacity: 0.7;
 }
-
+@media screen and (max-width: 1200px) {
+  .specialization {
+    &__slider {
+      &-content {
+        position: relative;
+        width: 100%;
+        min-height: 1000px;
+      }
+    }
+  }
+  .technologies {
+    &__container {
+      &::after {
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+      }
+    }
+  }
+}
+@media screen and (max-width: 1000px) {
+  .specialization {
+    &__slide {
+      &-image {
+        display: none;
+      }
+    }
+  }
+}
 @media (max-width: 768px) {
+  .technologies {
+    &__triangle {
+      transform: scale(0.5) translate(-200%, -100%) rotate(90deg);
+    }
+  }
   .project__slider-slide {
     flex: 0 0 50%;
+    p {
+      display: none;
+    }
   }
 }
 
 @media (max-width: 480px) {
+  .technologies {
+    &__container {
+      padding: 21px;
+    }
+  }
   .project__slider-slide {
     flex: 0 0 100%;
   }
 }
-
