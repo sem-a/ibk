@@ -163,4 +163,25 @@
 .technologies__image {
   margin-top: 42px;
   width: 70%;
+}
+
+.project {
+  background-color: #0057a6;
+  padding: 150px 0px;
+}
+.project__container {
+  width: 80%;
+  margin: 0 auto;
+}
+.project__title {
+  position: relative;
+  color: white !important;
+}
+.project__triangle {
+  position: absolute;
+  top: 50%;
+  transform: translate(-150%, -50%) rotate(90deg);
+}
+.project__triangle .triangle {
+  background-color: white;
 }/*# sourceMappingURL=index.css.map */
