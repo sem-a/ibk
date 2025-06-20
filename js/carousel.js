@@ -1,61 +1,146 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const slider = document.querySelector("#projectSlider");
-  const track = slider.querySelector(".project__slider-track");
-  const slides = Array.from(track.children);
-  const prevBtn = slider.querySelector(".prev");
-  const nextBtn = slider.querySelector(".next");
-  const slideWidth = slides[0].getBoundingClientRect().width;
-  let currentIndex = 0;
+class InfiniteSlider {
+  constructor(options) {
+    // Настройки по умолчанию
+    const defaults = {
+      sliderSelector: '#projectSlider',
+      trackSelector: '.project__slider-track',
+      slideSelector: '.project__slider-slide',
+      prevBtnSelector: '.prev',
+      nextBtnSelector: '.next',
+      visibleSlides: 1,
+      clonesCount: 3,
+      transitionDuration: '0.5s',
+      transitionTiming: 'ease-in-out'
+    };
 
-  // Clone slides for infinite loop
-  const firstClones = slides.slice(0, 3).map((slide) => slide.cloneNode(true));
-  const lastClones = slides.slice(-3).map((slide) => slide.cloneNode(true));
-  firstClones.forEach((clone) => track.appendChild(clone));
-  lastClones.forEach((clone) => track.insertBefore(clone, track.firstChild));
+    // Объединяем переданные параметры с настройками по умолчанию
+    this.config = { ...defaults, ...options };
+    
+    // Инициализация
+    this.init();
+  }
 
-  // Update slides array after cloning
-  const allSlides = Array.from(track.children);
-  const totalSlides = allSlides.length;
+  init() {
+    // Получаем элементы DOM
+    this.slider = document.querySelector(this.config.sliderSelector);
+    if (!this.slider) return;
+    
+    this.track = this.slider.querySelector(this.config.trackSelector);
+    this.slides = Array.from(this.track.querySelectorAll(this.config.slideSelector));
+    this.prevBtn = this.slider.querySelector(this.config.prevBtnSelector);
+    this.nextBtn = this.slider.querySelector(this.config.nextBtnSelector);
+    
+    // Проверяем, что все элементы существуют
+    if (!this.track || !this.slides.length || !this.prevBtn || !this.nextBtn) {
+      console.error('Slider elements not found!');
+      return;
+    }
 
-  // Set initial position
-  track.style.transform = `translateX(-${slideWidth * 3}px)`;
+    // Рассчитываем ширину слайда
+    this.slideWidth = this.slides[0].getBoundingClientRect().width;
+    this.currentIndex = 0;
+    this.totalOriginalSlides = this.slides.length;
 
-  function moveToSlide(index) {
-    track.style.transition = "transform 0.5s ease-in-out";
-    track.style.transform = `translateX(-${slideWidth * (index + 3)}px)`;
-    currentIndex = index;
+    // Клонируем слайды для бесконечного цикла
+    this.cloneSlides();
+    
+    // Устанавливаем начальную позицию
+    this.setInitialPosition();
+    
+    // Добавляем обработчики событий
+    this.addEventListeners();
+  }
 
-    // Handle infinite loop
-    if (currentIndex === slides.length) {
+  cloneSlides() {
+    // Клонируем первые и последние слайды
+    const firstClones = this.slides
+      .slice(0, this.config.clonesCount)
+      .map(slide => slide.cloneNode(true));
+    
+    const lastClones = this.slides
+      .slice(-this.config.clonesCount)
+      .map(slide => slide.cloneNode(true));
+
+    // Добавляем клоны в трек
+    firstClones.forEach(clone => this.track.appendChild(clone));
+    lastClones.forEach(clone => this.track.insertBefore(clone, this.track.firstChild));
+
+    // Обновляем массив всех слайдов
+    this.allSlides = Array.from(this.track.children);
+    this.totalSlides = this.allSlides.length;
+  }
+
+  setInitialPosition() {
+    this.track.style.transition = 'none';
+    this.track.style.transform = `translateX(-${this.slideWidth * this.config.clonesCount}px)`;
+  }
+
+  moveToSlide(index) {
+    this.currentIndex = index;
+    this.track.style.transition = `transform ${this.config.transitionDuration} ${this.config.transitionTiming}`;
+    this.track.style.transform = `translateX(-${this.slideWidth * (index + this.config.clonesCount)}px)`;
+
+    // Обработка бесконечного цикла
+    this.handleInfiniteLoop();
+  }
+
+  handleInfiniteLoop() {
+    if (this.currentIndex >= this.totalOriginalSlides) {
       setTimeout(() => {
-        track.style.transition = "none";
-        currentIndex = 0;
-        track.style.transform = `translateX(-${slideWidth * 3}px)`;
-      }, 500);
-    } else if (currentIndex === -1) {
+        this.track.style.transition = 'none';
+        this.currentIndex = 0;
+        this.track.style.transform = `translateX(-${this.slideWidth * this.config.clonesCount}px)`;
+      }, parseFloat(this.config.transitionDuration) * 1000);
+    } 
+    else if (this.currentIndex < 0) {
       setTimeout(() => {
-        track.style.transition = "none";
-        currentIndex = slides.length - 1;
-        track.style.transform = `translateX(-${
-          slideWidth * (slides.length + 2)
-        }px)`;
-      }, 500);
+        this.track.style.transition = 'none';
+        this.currentIndex = this.totalOriginalSlides - 1;
+        this.track.style.transform = `translateX(-${this.slideWidth * (this.totalOriginalSlides + this.config.clonesCount - 1)}px)`;
+      }, parseFloat(this.config.transitionDuration) * 1000);
     }
   }
 
-  nextBtn.addEventListener("click", () => {
-    moveToSlide(currentIndex + 1);
-  });
+  addEventListeners() {
+    // Кнопки навигации
+    this.nextBtn.addEventListener('click', () => {
+      this.moveToSlide(this.currentIndex + 1);
+    });
 
-  prevBtn.addEventListener("click", () => {
-    moveToSlide(currentIndex - 1);
-  });
+    this.prevBtn.addEventListener('click', () => {
+      this.moveToSlide(this.currentIndex - 1);
+    });
 
-  // Handle window resize
-  window.addEventListener("resize", () => {
-    const newSlideWidth = slides[0].getBoundingClientRect().width;
-    track.style.transform = `translateX(-${
-      newSlideWidth * (currentIndex + 3)
-    }px)`;
+    // Обработка изменения размера окна
+    window.addEventListener('resize', () => {
+      this.slideWidth = this.slides[0].getBoundingClientRect().width;
+      this.track.style.transform = `translateX(-${this.slideWidth * (this.currentIndex + this.config.clonesCount)}px)`;
+    });
+
+    // Переинициализация при изменении ориентации устройства
+    window.addEventListener('orientationchange', () => {
+      setTimeout(() => {
+        this.slideWidth = this.slides[0].getBoundingClientRect().width;
+        this.setInitialPosition();
+      }, 500);
+    });
+  }
+}
+
+// Пример использования
+document.addEventListener("DOMContentLoaded", () => {
+  // Инициализация слайдера с настройками по умолчанию
+  const projectSlider = new InfiniteSlider();
+  
+  // Или с кастомными настройками
+  const anotherSlider = new InfiniteSlider({
+    sliderSelector: '#anotherSlider',
+    trackSelector: '.custom-track',
+    slideSelector: '.custom-slide',
+    prevBtnSelector: '.custom-prev',
+    nextBtnSelector: '.custom-next',
+    visibleSlides: 2,
+    clonesCount: 2,
+    transitionDuration: '0.3s'
   });
 });
