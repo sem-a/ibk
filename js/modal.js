@@ -1,6 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const sliderTrack = document.querySelector(".project__slider-track");
-  const projectSlides = sliderTrack.querySelectorAll('.project__slider-slide');
   const modalOverlay = document.createElement("div");
   modalOverlay.className = "modal-overlay";
   const modalContent = document.createElement("div");
@@ -9,12 +7,11 @@ document.addEventListener("DOMContentLoaded", function () {
   closeButton.className = "modal-close";
   closeButton.innerHTML = "&times;";
 
-  console.log(projectSlides);
-
   modalContent.appendChild(closeButton);
   modalOverlay.appendChild(modalContent);
   document.body.appendChild(modalOverlay);
 
+  // Функция для обрезки текста
   function truncateTextInCard(textElement) {
     const originalText = textElement.textContent;
     const maxLength = 300;
@@ -25,12 +22,14 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  // Функция открытия модального окна
   function openModal(slide) {
-    const title = slide.querySelector(".project__slide-title").textContent;
-    const imageSrc = slide.querySelector(".project__slide-image").src;
+    const title = slide.querySelector(".project__slide-title")?.textContent;
+    const imageSrc = slide.querySelector(".project__slide-image")?.src;
     const textElement = slide.querySelector(".text");
-    const fullText =
-      textElement.getAttribute("data-full-text") || textElement.textContent;
+    const fullText = textElement?.getAttribute("data-full-text") || textElement?.textContent;
+
+    if (!title || !imageSrc || !fullText) return;
 
     modalContent.innerHTML = `
       <button class="modal-close">&times;</button>
@@ -41,39 +40,46 @@ document.addEventListener("DOMContentLoaded", function () {
 
     modalOverlay.style.display = "block";
     document.body.classList.add("modal-open");
-
-    modalContent
-      .querySelector(".modal-close")
-      .addEventListener("click", closeModal);
   }
 
+  // Функция закрытия модального окна
   function closeModal() {
     modalOverlay.style.display = "none";
     document.body.classList.remove("modal-open");
   }
 
-  projectSlides.forEach((slide) => {
-    const textElement = slide.querySelector(".text");
-    if (textElement) {
-      truncateTextInCard(textElement);
-    }
-  });
-
-  projectSlides.forEach((slide) => {
-    slide.addEventListener("click", function () {
+  // Делегирование событий на весь документ
+  document.addEventListener('click', function(e) {
+    // Проверяем, был ли клик по слайду или его потомку
+    const slide = e.target.closest('.project__slider-slide');
+    if (slide) {
+      // Обрезаем текст при первом клике (если еще не обрезан)
+      const textElement = slide.querySelector(".text");
+      if (textElement && !textElement.hasAttribute("data-full-text")) {
+        truncateTextInCard(textElement);
+      }
       openModal(slide);
-    });
-  });
-
-  modalOverlay.addEventListener("click", function (e) {
-    if (e.target === modalOverlay) {
+    }
+    
+    // Закрытие модального окна
+    if (e.target.classList.contains('modal-close') || e.target === modalOverlay) {
       closeModal();
     }
   });
 
+  // Закрытие по ESC
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape" && modalOverlay.style.display === "block") {
       closeModal();
+    }
+  });
+
+  // Обрезаем текст в исходных слайдах при загрузке
+  const initialSlides = document.querySelectorAll('.project__slider-slide:not(.clone)');
+  initialSlides.forEach(slide => {
+    const textElement = slide.querySelector(".text");
+    if (textElement) {
+      truncateTextInCard(textElement);
     }
   });
 });
