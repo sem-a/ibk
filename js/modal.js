@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
   modalOverlay.appendChild(modalContent);
   document.body.appendChild(modalOverlay);
 
-  // Функция для обрезки текста
   function truncateTextInCard(textElement) {
     const originalText = textElement.textContent;
     const maxLength = 300;
@@ -22,7 +21,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Функция открытия модального окна
   function openModal(slide) {
     const title = slide.querySelector(".project__slide-title")?.textContent;
     const imageSrc = slide.querySelector(".project__slide-image")?.src;
@@ -42,39 +40,32 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.classList.add("modal-open");
   }
 
-  // Функция закрытия модального окна
   function closeModal() {
     modalOverlay.style.display = "none";
     document.body.classList.remove("modal-open");
   }
 
-  // Делегирование событий на весь документ
   document.addEventListener('click', function(e) {
-    // Проверяем, был ли клик по слайду или его потомку
     const slide = e.target.closest('.project__slider-slide');
     if (slide) {
-      // Обрезаем текст при первом клике (если еще не обрезан)
       const textElement = slide.querySelector(".text");
       if (textElement && !textElement.hasAttribute("data-full-text")) {
         truncateTextInCard(textElement);
       }
       openModal(slide);
     }
-    
-    // Закрытие модального окна
+
     if (e.target.classList.contains('modal-close') || e.target === modalOverlay) {
       closeModal();
     }
   });
 
-  // Закрытие по ESC
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape" && modalOverlay.style.display === "block") {
       closeModal();
     }
   });
 
-  // Обрезаем текст в исходных слайдах при загрузке
   const initialSlides = document.querySelectorAll('.project__slider-slide:not(.clone)');
   initialSlides.forEach(slide => {
     const textElement = slide.querySelector(".text");

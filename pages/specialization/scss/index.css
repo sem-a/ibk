@@ -48,7 +48,6 @@
 .specialization__btn {
   position: relative;
   cursor: pointer;
-  height: auto;
   text-align: left;
   display: flex;
   align-items: center;
@@ -267,6 +266,58 @@
   opacity: 0.7;
 }
 
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  display: none;
+  overflow-y: auto;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  display: block;
+}
+
+.modal-content {
+  position: relative;
+  background: white;
+  margin: 5% auto;
+  padding: 40px;
+  border-radius: 16px;
+  max-width: 800px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-weight: bold;
+}
+
+.modal-title {
+  margin-bottom: 20px;
+}
+
+.modal-image {
+  width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+
 @media screen and (max-width: 1200px) {
   .specialization__slider-content {
     position: relative;
@@ -284,7 +335,37 @@
     display: none;
   }
 }
+@media screen and (max-width: 900px) {
+  .specialization__title span:last-child {
+    display: none;
+  }
+}
 @media (max-width: 768px) {
+  .specialization__title {
+    text-align: center;
+  }
+  .specialization__triangle {
+    display: none;
+  }
+  .specialization__btn {
+    flex-direction: column;
+    justify-content: center;
+    min-width: 290px;
+    padding: 21px 14px;
+  }
+  .specialization__btn-title {
+    margin-bottom: 0;
+    gap: 0;
+  }
+  .specialization__btn-subtitle {
+    display: none;
+  }
+  .specialization__btn-image {
+    display: none;
+  }
+  .specialization__slider-slide {
+    padding: 21px 21px;
+  }
   .technologies__triangle {
     transform: scale(0.5) translate(-200%, -100%) rotate(90deg);
   }
