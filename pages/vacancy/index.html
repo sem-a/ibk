@@ -452,8 +452,31 @@
             Этапы трудоустройства
           </h2>
           <ul class="steps__list">
-            <li class="steps__number text">01</li>
-            <li class="steps__card">
+            <svg id="stepsLineTablet"
+              viewBox="0 0 710 922"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M0.202148 0.865234C0.202148 0.865234 53.2671 17.7891 74.296 28.6156C173.931 79.9118 242.722 86.4337 346.291 86.4337C401.045 86.4337 734.939 80.6766 693.237 330.106C663.962 505.209 268.837 415.985 235.399 415.985C64.0201 415.985 51.1663 539.445 80.2565 626.094C109.347 712.742 286.585 796.784 363.942 809.018C482.107 827.707 709.641 921.152 709.641 921.152"
+                stroke="white"
+                stroke-dasharray="20 20"
+              />
+            </svg>
+            <svg id="stepsLine"
+              viewBox="0 0 1095 923"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M0.204102 0.908203C0.204102 0.908203 82.0397 17.8505 114.47 28.6889C268.125 80.041 374.213 86.57 533.934 86.57C618.374 86.57 1133.3 80.8066 1068.99 330.508C1023.84 505.803 414.487 416.481 362.92 416.481C98.6227 416.481 78.7999 540.076 123.662 626.819C168.524 713.562 441.857 797.695 561.155 809.943C743.386 828.652 1094.28 922.199 1094.28 922.199"
+                stroke="white"
+                stroke-dasharray="20 20"
+              />
+            </svg>
+            <div class="steps__line"></div>
+            <li id="liNumberOne" class="steps__number text">01</li>
+            <li id="liCardOne" class="steps__card">
               <h3 class="steps__card-title title">Отклик на вакансию</h3>
               <p class="steps__card-subtitle title">
                 Откликнись на HeadHunter или на сайте компании
@@ -464,8 +487,8 @@
                 alt="specialization1"
               />
             </li>
-            <li class="steps__number">02</li>
-            <li class="steps__card">
+            <li id="liNumberTwo" class="steps__number">02</li>
+            <li id="liCardTwo" class="steps__card">
               <h3 class="steps__card-title title">Звонок HR-специалиста</h3>
               <p class="steps__card-subtitle title">
                 После отклика с тобой свяжется наш заботливый HR и пригласит
@@ -477,8 +500,8 @@
                 alt="specialization1"
               />
             </li>
-            <li class="steps__number text">03</li>
-            <li class="steps__card">
+            <li id="liNumberThree" class="steps__number text">03</li>
+            <li id="liCardThree" class="steps__card">
               <h3 class="steps__card-title title">Собеседование</h3>
               <p class="steps__card-subtitle title">
                 На собеседовании ты сможешь узнать точную и подробную информацию
@@ -490,8 +513,8 @@
                 alt="specialization1"
               />
             </li>
-            <li class="steps__number text">04</li>
-            <li class="steps__card">
+            <li id="liNumberFour" class="steps__number text">04</li>
+            <li id="liCardFour" class="steps__card">
               <h3 class="steps__card-title title">Оффер</h3>
               <p class="steps__card-subtitle title">
                 Получишь письменный документ с условиями работы, задачами
@@ -582,7 +605,7 @@
             </div>
           </div>
           <div class="footer__menus">
-            <ul class="footer__menu-list">
+            <ul class="footer__menu-list menu-main">
               <li class="footer__menu-item">
                 <a class="footer__menu-link" style="opacity: 1" href="#">
                   <h5 class="title">Основная</h5>
@@ -598,7 +621,7 @@
                 <a class="footer__menu-link" href="#">Контакты</a>
               </li>
             </ul>
-            <ul class="footer__menu-list">
+            <ul class="footer__menu-list menu-optionally">
               <li class="footer__menu-item">
                 <a href="#" class="footer__menu-link" style="opacity: 1">
                   <h5 class="title">Дополнительно</h5>
