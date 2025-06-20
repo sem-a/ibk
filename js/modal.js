@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const body = document.querySelector("body");
-  const projectSlides = document.querySelectorAll(".project__slider-slide");
+  const sliderTrack = document.querySelector(".project__slider-track");
+  const projectSlides = sliderTrack.querySelectorAll('.project__slider-slide');
   const modalOverlay = document.createElement("div");
   modalOverlay.className = "modal-overlay";
   const modalContent = document.createElement("div");
@@ -9,15 +9,16 @@ document.addEventListener("DOMContentLoaded", function () {
   closeButton.className = "modal-close";
   closeButton.innerHTML = "&times;";
 
+  console.log(projectSlides);
+
   modalContent.appendChild(closeButton);
   modalOverlay.appendChild(modalContent);
   document.body.appendChild(modalOverlay);
 
-  // Функция для обрезки текста в карточке
   function truncateTextInCard(textElement) {
     const originalText = textElement.textContent;
-    const maxLength = 100; // Максимальная длина перед обрезкой
-    
+    const maxLength = 300;
+
     if (originalText.length > maxLength) {
       textElement.setAttribute("data-full-text", originalText);
       textElement.textContent = originalText.substring(0, maxLength) + "...";
@@ -28,8 +29,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const title = slide.querySelector(".project__slide-title").textContent;
     const imageSrc = slide.querySelector(".project__slide-image").src;
     const textElement = slide.querySelector(".text");
-    // Берем полный текст из data-атрибута или текущий текст, если он не обрезан
-    const fullText = textElement.getAttribute("data-full-text") || textElement.textContent;
+    const fullText =
+      textElement.getAttribute("data-full-text") || textElement.textContent;
 
     modalContent.innerHTML = `
       <button class="modal-close">&times;</button>
@@ -41,7 +42,9 @@ document.addEventListener("DOMContentLoaded", function () {
     modalOverlay.style.display = "block";
     document.body.classList.add("modal-open");
 
-    modalContent.querySelector(".modal-close").addEventListener("click", closeModal);
+    modalContent
+      .querySelector(".modal-close")
+      .addEventListener("click", closeModal);
   }
 
   function closeModal() {
@@ -49,8 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.classList.remove("modal-open");
   }
 
-  // Инициализация - обрезаем текст во всех карточках при загрузке
-  projectSlides.forEach(slide => {
+  projectSlides.forEach((slide) => {
     const textElement = slide.querySelector(".text");
     if (textElement) {
       truncateTextInCard(textElement);
